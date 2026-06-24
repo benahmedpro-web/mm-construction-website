@@ -9,11 +9,7 @@ export function IntroSection() {
           <strong className="text-[#2C2C2A]">M&amp;M CONSTRUCTION</strong> : maîtrise d&apos;œuvre spécialisée
           maison bois, ossature bois et rénovation en Haute-Savoie, Genevois français et Ain.
           Concrètement, un seul interlocuteur qui coordonne chaque corps de métier — du permis de construire
-          à la réception des travaux — avec des{" "}
-          <Link href="/artisans/" className="text-[#BA7517] underline hover:no-underline">
-            artisans vérifiés locaux
-          </Link>
-          {" "}et une assurance décennale à jour.
+          à la réception des travaux — avec des artisans vérifiés locaux et une assurance décennale à jour.
         </p>
         <Link
           href="/demande-etude/"
