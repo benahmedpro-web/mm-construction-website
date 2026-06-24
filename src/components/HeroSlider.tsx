@@ -38,7 +38,7 @@ export function HeroSlider() {
         >
           <Image
             src={s.bg}
-            alt=""
+            alt={i === 0 ? "M&M CONSTRUCTION — Maison ossature bois Haute-Savoie" : ""}
             fill
             sizes="100vw"
             className="object-cover object-center"
