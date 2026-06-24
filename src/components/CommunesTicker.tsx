@@ -14,13 +14,13 @@ export function CommunesTicker() {
     <div className="bg-[#2C2C2A] py-3 overflow-hidden border-b border-white/10">
       <div className="flex items-center gap-0">
         {/* Label fixe */}
-        <div className="flex-shrink-0 bg-[#BA7517] px-4 py-1.5 mr-0 z-10">
+        <div className="flex-shrink-0 bg-[#BA7517] px-4 py-1.5 z-10">
           <span className="text-white text-[11px] font-bold uppercase tracking-widest whitespace-nowrap">Zone d&apos;intervention</span>
         </div>
 
         {/* Ticker */}
         <div className="overflow-hidden flex-1">
-          <div className="ticker-track flex whitespace-nowrap" style={{ animation: "ticker 35s linear infinite" }}>
+          <div className="ticker-track flex whitespace-nowrap">
             {items.map((commune, i) => (
               <span key={i} className="inline-flex items-center gap-3 text-white/70 text-[13px] px-5">
                 <span className="text-[#BA7517] text-[8px]">◆</span>
@@ -36,8 +36,13 @@ export function CommunesTicker() {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
+        .ticker-track {
+          animation: ticker 35s linear infinite;
+        }
         @media (max-width: 768px) {
-          .ticker-track { animation-duration: 10s !important; }
+          .ticker-track {
+            animation: ticker 6s linear infinite;
+          }
         }
       `}</style>
     </div>
