@@ -4,6 +4,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Notre méthode MOE — Maîtrise d'œuvre maison bois | M&M CONSTRUCTION",
   description: "La méthode M&M CONSTRUCTION : évaluation, conception, permis, sélection artisans, coordination chantier, réception. Un maître d'œuvre spécialisé bois en Haute-Savoie.",
+  alternates: {
+    canonical: "https://www.constructiondemaisons.com/notre-methode/",
+  },
 };
 
 const phases = [

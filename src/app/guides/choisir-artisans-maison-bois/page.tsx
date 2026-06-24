@@ -4,6 +4,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Comment choisir ses artisans pour une maison bois ? | M&M CONSTRUCTION",
   description: "Décennale, Qualibat bois, références locales : les critères concrets pour sélectionner les bons artisans pour votre chantier bois en Haute-Savoie et Ain.",
+  alternates: {
+    canonical: "https://www.constructiondemaisons.com/guides/choisir-artisans-maison-bois/",
+  },
 };
 
 const BASE = "https://www.constructiondemaisons.com";
@@ -16,6 +19,7 @@ const jsonLdArticle = {
   url: BASE + "/guides/choisir-artisans-maison-bois/",
   author: { "@type": "Person", name: "Mahmoud Ben Ahmed" },
   publisher: { "@type": "Organization", name: "M&M CONSTRUCTION", url: BASE },
+  datePublished: "2025-01-15",
   dateModified: "2025-06-01",
   inLanguage: "fr-FR",
 };

@@ -7,9 +7,6 @@ export const metadata: Metadata = {
   title: "M&M CONSTRUCTION — Maîtrise d'œuvre maison bois | Genevois",
   description:
     "Maîtrise d'œuvre maison ossature bois en Haute-Savoie et Genevois français. 20 ans d'expérience, artisans vérifiés. Étude gratuite.",
-  alternates: {
-    canonical: BASE + "/",
-  },
   openGraph: {
     title: "M&M CONSTRUCTION — Maîtrise d'œuvre maison bois | Genevois",
     description:

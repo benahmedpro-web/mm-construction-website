@@ -17,6 +17,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${a.type} ${a.commune} — ${a.surfaceHabitable} m² | M&M CONSTRUCTION`,
     description: a.accroche,
+    alternates: {
+      canonical: `https://www.constructiondemaisons.com/annonces/${slug}/`,
+    },
   };
 }
 

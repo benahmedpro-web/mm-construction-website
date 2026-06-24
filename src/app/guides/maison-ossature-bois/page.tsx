@@ -4,6 +4,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Maison ossature bois : avantages, coûts et délais en 2025 | M&M CONSTRUCTION",
   description: "Guide complet sur la maison ossature bois en 2025 : budget réaliste, durée de chantier, avantages thermiques, comparaison avec la construction maçonnée.",
+  alternates: {
+    canonical: "https://www.constructiondemaisons.com/guides/maison-ossature-bois/",
+  },
 };
 
 const BASE = "https://www.constructiondemaisons.com";
@@ -16,6 +19,7 @@ const jsonLdArticle = {
   url: BASE + "/guides/maison-ossature-bois/",
   author: { "@type": "Person", name: "Mahmoud Ben Ahmed" },
   publisher: { "@type": "Organization", name: "M&M CONSTRUCTION", url: BASE },
+  datePublished: "2025-01-15",
   dateModified: "2025-06-01",
   inLanguage: "fr-FR",
 };

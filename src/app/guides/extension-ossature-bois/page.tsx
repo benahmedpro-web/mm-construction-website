@@ -4,6 +4,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Extension ossature bois : permis, coût, délais | M&M CONSTRUCTION",
   description: "Tout savoir sur l'extension ossature bois en Haute-Savoie : surface, budget, permis de construire, délais de chantier. Guide par M&M CONSTRUCTION, maître d'œuvre.",
+  alternates: {
+    canonical: "https://www.constructiondemaisons.com/guides/extension-ossature-bois/",
+  },
 };
 
 const BASE = "https://www.constructiondemaisons.com";
@@ -16,6 +19,7 @@ const jsonLdArticle = {
   url: BASE + "/guides/extension-ossature-bois/",
   author: { "@type": "Person", name: "Mahmoud Ben Ahmed" },
   publisher: { "@type": "Organization", name: "M&M CONSTRUCTION", url: BASE },
+  datePublished: "2025-01-15",
   dateModified: "2025-06-01",
   inLanguage: "fr-FR",
 };

@@ -4,6 +4,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "RE2020 et maison bois en Haute-Savoie : ce qui change | M&M CONSTRUCTION",
   description: "La RE2020 favorise-t-elle l'ossature bois ? Exigences concrètes pour construire en zone alpine en 2025. Guide par M&M CONSTRUCTION, maître d'œuvre Haute-Savoie.",
+  alternates: {
+    canonical: "https://www.constructiondemaisons.com/guides/re2020-maison-bois/",
+  },
 };
 
 const BASE = "https://www.constructiondemaisons.com";
@@ -16,6 +19,7 @@ const jsonLdArticle = {
   url: BASE + "/guides/re2020-maison-bois/",
   author: { "@type": "Person", name: "Mahmoud Ben Ahmed" },
   publisher: { "@type": "Organization", name: "M&M CONSTRUCTION", url: BASE },
+  datePublished: "2025-01-15",
   dateModified: "2025-06-01",
   inLanguage: "fr-FR",
 };

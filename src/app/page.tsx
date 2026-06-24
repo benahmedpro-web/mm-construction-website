@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/Header";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://www.constructiondemaisons.com/",
+  },
+};
 import { HeroSlider } from "@/components/HeroSlider";
 import { CommunesTicker } from "@/components/CommunesTicker";
 import { QuickLinks } from "@/components/QuickLinks";

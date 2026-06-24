@@ -5,6 +5,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Extension ossature bois — Maître d'œuvre Haute-Savoie | M&M CONSTRUCTION",
   description: "M&M CONSTRUCTION coordonne votre extension ossature bois en Genevois français, Haute-Savoie et Ain. Permis de construire, artisans vérifiés, suivi complet.",
+  alternates: {
+    canonical: "https://www.constructiondemaisons.com/extension-bois/",
+  },
 };
 
 const etapes = [

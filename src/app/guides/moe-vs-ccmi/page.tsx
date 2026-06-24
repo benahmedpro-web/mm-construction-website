@@ -4,6 +4,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Maîtrise d'œuvre vs CCMI : quelles différences concrètes ? | M&M CONSTRUCTION",
   description: "Comparaison objective MOE vs CCMI : budget, liberté de choix, garanties, suivi de chantier. Ce que vous gagnez avec un maître d'œuvre spécialisé bois.",
+  alternates: {
+    canonical: "https://www.constructiondemaisons.com/guides/moe-vs-ccmi/",
+  },
 };
 
 const BASE = "https://www.constructiondemaisons.com";
@@ -16,6 +19,7 @@ const jsonLdArticle = {
   url: BASE + "/guides/moe-vs-ccmi/",
   author: { "@type": "Person", name: "Mahmoud Ben Ahmed" },
   publisher: { "@type": "Organization", name: "M&M CONSTRUCTION", url: BASE },
+  datePublished: "2025-01-15",
   dateModified: "2025-06-01",
   inLanguage: "fr-FR",
 };

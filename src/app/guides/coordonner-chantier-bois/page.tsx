@@ -4,6 +4,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Comment coordonner un chantier maison bois ? | M&M CONSTRUCTION",
   description: "Les étapes clés de la coordination de chantier bois : planning, corps de métier, suivi qualité. Guide pratique par M&M CONSTRUCTION, maître d'œuvre en Haute-Savoie.",
+  alternates: {
+    canonical: "https://www.constructiondemaisons.com/guides/coordonner-chantier-bois/",
+  },
 };
 
 const BASE = "https://www.constructiondemaisons.com";
@@ -16,6 +19,7 @@ const jsonLdArticle = {
   url: BASE + "/guides/coordonner-chantier-bois/",
   author: { "@type": "Person", name: "Mahmoud Ben Ahmed" },
   publisher: { "@type": "Organization", name: "M&M CONSTRUCTION", url: BASE },
+  datePublished: "2025-01-15",
   dateModified: "2025-06-01",
   inLanguage: "fr-FR",
 };

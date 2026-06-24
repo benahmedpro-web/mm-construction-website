@@ -4,6 +4,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Permis de construire en Genevois français : les pièges à éviter | M&M CONSTRUCTION",
   description: "Délais d'instruction, PLU locaux, recours voisins, zones sismiques — ce que les services d'urbanisme ne vous diront pas. Guide par M&M CONSTRUCTION, maître d'œuvre.",
+  alternates: {
+    canonical: "https://www.constructiondemaisons.com/guides/permis-construire-genevois/",
+  },
 };
 
 const BASE = "https://www.constructiondemaisons.com";
@@ -16,6 +19,7 @@ const jsonLdArticle = {
   url: BASE + "/guides/permis-construire-genevois/",
   author: { "@type": "Person", name: "Mahmoud Ben Ahmed" },
   publisher: { "@type": "Organization", name: "M&M CONSTRUCTION", url: BASE },
+  datePublished: "2025-01-15",
   dateModified: "2025-06-01",
   inLanguage: "fr-FR",
 };
