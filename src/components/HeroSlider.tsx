@@ -4,11 +4,11 @@ import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 
 const slides = [
-  { bg: "/images/4P__0012_CORAIL_6192_4Pans_FAV.jpg" },
-  { bg: "/images/1920x750_Maisons_Pierre_NORD_SPITI_4.112_FAR-1.jpg" },
-  { bg: "/images/4P__0001_QUARTZ_3169-GI_4Pans_FAR.jpg" },
-  { bg: "/images/4P__0003_QUARTZ_3148_GI_4Pans_FAR.jpg" },
-  { bg: "/images/1920x750_Maisons_Pierre_NORD_CONDENSIA_4.090_GI_FAV-1.jpg" },
+  { bg: "/images/hero-maison-bois-alpine.jpg" },
+  { bg: "/images/hero-maison-bois-montagne-1.jpg" },
+  { bg: "/images/hero-extension-bois-golden.jpg" },
+  { bg: "/images/hero-extension-bois-jardin.jpg" },
+  { bg: "/images/hero-maison-bois-montagne-2.jpg" },
 ];
 
 export function HeroSlider() {
