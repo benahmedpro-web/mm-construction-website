@@ -41,7 +41,7 @@ export function CommunesTicker() {
         }
         @media (max-width: 768px) {
           .ticker-track {
-            animation: ticker 6s linear infinite;
+            animation: ticker 20s linear infinite;
           }
         }
       `}</style>
