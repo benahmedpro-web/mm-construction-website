@@ -1,9 +1,29 @@
+import { Header } from "@/components/Header";
+import { HeroSlider } from "@/components/HeroSlider";
+import { QuickLinks } from "@/components/QuickLinks";
+import { IntroSection } from "@/components/IntroSection";
+import { FeaturesGrid } from "@/components/FeaturesGrid";
+import { StatsBar } from "@/components/StatsBar";
+import { StepsSection } from "@/components/StepsSection";
+import { InvestSection } from "@/components/InvestSection";
+import { TestimonialSection } from "@/components/TestimonialSection";
+import { BlogSection } from "@/components/BlogSection";
+import { Footer } from "@/components/Footer";
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center">
-      <p className="text-muted-foreground">
-        Clone target not yet built. Run <code className="font-mono text-foreground">/clone-website</code> to start.
-      </p>
+    <main className="flex flex-col min-h-screen">
+      <Header />
+      <HeroSlider />
+      <QuickLinks />
+      <IntroSection />
+      <FeaturesGrid />
+      <StatsBar />
+      <StepsSection />
+      <InvestSection />
+      <TestimonialSection />
+      <BlogSection />
+      <Footer />
     </main>
   );
 }
