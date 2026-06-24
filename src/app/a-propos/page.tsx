@@ -3,8 +3,8 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "À propos — Mahmoud Ben Ahmed, maître d'œuvre bois | M&M CONSTRUCTION",
-  description: "M&M CONSTRUCTION, maîtrise d'œuvre spécialisée maison ossature bois en Genevois français, Haute-Savoie et Ain. Fondateur : Mahmoud Ben Ahmed, 20 ans d'expérience terrain.",
+  title: "À propos — Mahmoud Ben Ahmed | M&M CONSTRUCTION",
+  description: "20 ans de BTP, 200+ projets accompagnés, expert des deux côtés du marché. Mahmoud Ben Ahmed fonde M&M CONSTRUCTION à Annemasse pour accompagner les particuliers sans intermédiaire.",
 };
 
 const valeurs = [
@@ -14,8 +14,8 @@ const valeurs = [
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
       </svg>
     ),
-    titre: "Indépendance totale",
-    corps: "M&M CONSTRUCTION ne revend pas de maisons, ne perçoit pas de commission sur les artisans et ne travaille pas pour des promoteurs. Notre seule rémunération : vos honoraires. Notre seul objectif : votre projet.",
+    titre: "Il connaît les deux côtés",
+    corps: "Mahmoud a passé 17 ans chez les grands groupes CMI (Maisons Pierre, Geoxia, Demeures Traditionnelles). Il sait exactement comment ils travaillent, ce qu'ils promettent et ce qu'ils livrent réellement. Cette connaissance de l'intérieur est au service de ses clients depuis 2020.",
   },
   {
     icon: (
@@ -23,8 +23,8 @@ const valeurs = [
         <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
       </svg>
     ),
-    titre: "Engagement sur le résultat",
-    corps: "Planning, budget, qualité — les trois engagements sont écrits dans le contrat et suivis à chaque étape. Pas de promesse orale, pas de surprise en cours de chantier.",
+    titre: "200+ projets de construction",
+    corps: "Des premiers projets en 2003 à aujourd'hui, Mahmoud a accompagné plus de 200 projets de construction de maisons individuelles. Faisabilité, coordination technique, suivi client — il connaît chaque étape par cœur.",
   },
   {
     icon: (
@@ -32,27 +32,27 @@ const valeurs = [
         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
       </svg>
     ),
-    titre: "Ancrage local",
-    corps: "On ne travaille que sur notre zone : Haute-Savoie, Ain, Genevois français. On connaît les PLU, les délais d'instruction, les aléas climatiques et les artisans qui tiennent leurs engagements.",
+    titre: "Ancrage Haute-Savoie",
+    corps: "Installé à Annemasse, Mahmoud travaille exclusivement en Haute-Savoie, Ain et Genevois français. Il connaît les PLU locaux, les contraintes alpines, les délais d'instruction réels et les bons interlocuteurs techniques sur la zone.",
   },
   {
     icon: (
       <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#BA7517" strokeWidth="1.5">
-        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
       </svg>
     ),
-    titre: "Spécialisation bois",
-    corps: "La maison ossature bois n'est pas un service parmi d'autres chez nous — c'est notre seul métier. DTU bois, gestion de la vapeur d'eau, sismique alpin, RE2020 : on maîtrise les spécificités techniques que les généralistes ne connaissent pas.",
+    titre: "Réseau de prescripteurs",
+    corps: "Architectes, maîtres d'œuvre, géomètres, notaires, bureaux d'études — Mahmoud a construit son réseau de prescripteurs sur deux décennies. Chaque projet bénéficie de ce maillage pour accélérer les validations et coordonner les bons intervenants.",
   },
 ];
 
 const parcours = [
-  { annee: "2004", evenement: "Débuts dans le bâtiment — conduite de chantier en région lyonnaise" },
-  { annee: "2010", evenement: "Spécialisation progressive dans la construction ossature bois" },
-  { annee: "2015", evenement: "Installation en Haute-Savoie — projets bois en zone alpine et Genevois" },
-  { annee: "2020", evenement: "Création de M&M CONSTRUCTION, maîtrise d'œuvre spécialisée bois (NAF 71.12B)" },
-  { annee: "2022", evenement: "Premiers projets RE2020 coordonnés en Genevois français et Ain" },
-  { annee: "2025", evenement: "Réseau de 30+ artisans vérifiés bois en Haute-Savoie et Ain" },
+  { annee: "2003", evenement: "Débuts en CMI chez Maisons Pierre en Île-de-France — 47 projets commercialisés" },
+  { annee: "2006", evenement: "Commercial chez Geoxia — 17 projets accompagnés en Île-de-France" },
+  { annee: "2007", evenement: "Entrepreneur — création et gestion de Seven Fitness à Sousse, Tunisie (7 ans)" },
+  { annee: "2014", evenement: "Retour chez Maisons Pierre — triple progression en 3 ans : commercial, ingénieur commercial, responsable d'agence. 92 projets commercialisés" },
+  { annee: "2017", evenement: "Responsable d'agence chez Les Demeures Traditionnelles (Groupe Lesterlin), Beauvais — 41 projets réalisés" },
+  { annee: "2020", evenement: "Création de M&M CONSTRUCTION — indépendant, projets de construction individuelle en Haute-Savoie. 24 projets conduits à ce jour" },
 ];
 
 export default function AProposPage() {
@@ -66,7 +66,7 @@ export default function AProposPage() {
             M&amp;M CONSTRUCTION
           </h1>
           <p className="text-white/60 text-[18px] leading-[1.6] max-w-[620px]">
-            Maîtrise d&apos;œuvre spécialisée maison ossature bois en Genevois français, Haute-Savoie et Ain. Fondée par Mahmoud Ben Ahmed.
+            Responsable de projets de construction individuelle en Haute-Savoie, Ain et Genevois français. Fondé par Mahmoud Ben Ahmed — 20 ans de BTP.
           </p>
         </div>
       </div>
@@ -86,22 +86,22 @@ export default function AProposPage() {
             </div>
             <div className="mt-4">
               <div className="text-[18px] font-black text-[#2C2C2A]">Mahmoud Ben Ahmed</div>
-              <div className="text-[13px] text-[#BA7517] font-bold uppercase tracking-wide mt-0.5">Maître d&apos;œuvre fondateur</div>
-              <div className="text-[13px] text-[#888780] mt-2">NAF 71.12B — M&amp;M CONSTRUCTION</div>
+              <div className="text-[13px] text-[#BA7517] font-bold uppercase tracking-wide mt-0.5">Responsable de projets — Fondateur</div>
+              <div className="text-[13px] text-[#888780] mt-2">Annemasse (74100) — M&amp;M CONSTRUCTION</div>
               <div className="flex gap-3 mt-4">
                 <div className="text-center">
-                  <div className="text-[22px] font-black text-[#BA7517]">20</div>
-                  <div className="text-[11px] text-[#888780]">ans terrain</div>
+                  <div className="text-[22px] font-black text-[#BA7517]">20+</div>
+                  <div className="text-[11px] text-[#888780]">ans BTP</div>
+                </div>
+                <div className="w-px bg-[#D9D4CC]" />
+                <div className="text-center">
+                  <div className="text-[22px] font-black text-[#BA7517]">200+</div>
+                  <div className="text-[11px] text-[#888780]">projets</div>
                 </div>
                 <div className="w-px bg-[#D9D4CC]" />
                 <div className="text-center">
                   <div className="text-[22px] font-black text-[#BA7517]">74·01</div>
                   <div className="text-[11px] text-[#888780]">zone exclusive</div>
-                </div>
-                <div className="w-px bg-[#D9D4CC]" />
-                <div className="text-center">
-                  <div className="text-[22px] font-black text-[#BA7517]">30+</div>
-                  <div className="text-[11px] text-[#888780]">artisans vérifiés</div>
                 </div>
               </div>
             </div>
@@ -110,20 +110,20 @@ export default function AProposPage() {
           {/* Bio */}
           <div>
             <h2 className="text-[28px] font-bold text-[#2C2C2A] mb-5 leading-tight">
-              20 ans de terrain avant de créer M&amp;M CONSTRUCTION
+              20 ans dans les grands groupes CMI — puis indépendant pour ses clients
             </h2>
             <p className="text-[16px] text-[#888780] leading-[1.8] mb-4">
-              Mahmoud Ben Ahmed a commencé sa carrière dans la conduite de chantier en 2004, d&apos;abord en région lyonnaise sur des projets de construction traditionnelle. Sa spécialisation progressive dans l&apos;ossature bois l&apos;amène en Haute-Savoie à partir de 2015, où il coordonne ses premiers projets en zone alpine et Genevois français.
+              Mahmoud Ben Ahmed commence en 2003 chez Maisons Pierre en Île-de-France, l&apos;un des premiers constructeurs CMI de France. Il y apprend le métier de A à Z : prospection, analyse de faisabilité, coordination technique, suivi de chantier. Il enchaîne ensuite chez Geoxia, crée une entreprise en Tunisie, puis revient chez Maisons Pierre en 2014 — où il progresse en trois ans de commercial à responsable d&apos;agence, avec 92 projets à son actif.
             </p>
             <p className="text-[16px] text-[#888780] leading-[1.8] mb-4">
-              En 2020, il crée M&amp;M CONSTRUCTION avec un positionnement clair : maîtrise d&apos;œuvre exclusivement spécialisée en maison ossature bois, sur une zone géographique délimitée. Pas de catalogue, pas de sous-traitance opaque, pas de marges cachées sur les artisans.
+              En 2017, il prend la direction d&apos;agence des Demeures Traditionnelles (Groupe Lesterlin) à Beauvais — 41 projets supplémentaires sur des clients particuliers premium. En 2020, il s&apos;installe en Haute-Savoie et fonde M&amp;M CONSTRUCTION : accompagnement de projets de construction individuelle en totale autonomie, sans structure intermédiaire ni catalogue imposé.
             </p>
             <p className="text-[16px] text-[#888780] leading-[1.8] mb-4">
-              Aujourd&apos;hui, M&amp;M CONSTRUCTION coordonne des projets de construction neuve, d&apos;extension et de rénovation bois en Haute-Savoie (74), dans l&apos;Ain (01) et dans le Genevois français. Chaque chantier est suivi personnellement par Mahmoud — pas délégué à un commercial ou à un chef de chantier interchangeable.
+              Aujourd&apos;hui basé à Annemasse, il intervient sur la Haute-Savoie, l&apos;Ain et le Genevois français. Son réseau — architectes, maîtres d&apos;œuvre, bureaux d&apos;études, géomètres, notaires — s&apos;est construit sur deux décennies de terrain.
             </p>
             <div className="bg-[#F2EDE6] p-5 mt-6">
               <p className="text-[15px] text-[#2C2C2A] leading-[1.7] italic">
-                &quot;Je n&apos;ai jamais vendu de maisons catalogue et je n&apos;en vendrai jamais. Mon métier, c&apos;est de coordonner votre projet avec les meilleurs artisans locaux — et de vous garantir que ce qu&apos;on vous a promis à la signature correspond à ce que vous recevez à la réception.&quot;
+                &quot;J&apos;ai vendu des centaines de maisons pour des grands groupes. Je sais exactement comment ces structures fonctionnent, ce qu&apos;elles promettent et ce qu&apos;elles livrent. Aujourd&apos;hui, je travaille pour mes clients — pas pour une enseigne nationale.&quot;
               </p>
               <p className="text-[13px] text-[#BA7517] font-bold mt-3">— Mahmoud Ben Ahmed</p>
             </div>
@@ -138,7 +138,6 @@ export default function AProposPage() {
           <div className="flex flex-col gap-0">
             {parcours.map((item, i) => (
               <div key={i} className="flex gap-6 items-start pb-8 relative">
-                {/* Ligne verticale */}
                 {i < parcours.length - 1 && (
                   <div className="absolute left-[39px] top-8 bottom-0 w-px bg-[#D9D4CC]" />
                 )}
@@ -171,13 +170,38 @@ export default function AProposPage() {
         </div>
       </section>
 
+      {/* Compétences */}
+      <section className="bg-[#F2EDE6] py-12 px-5">
+        <div className="max-w-[900px] mx-auto">
+          <h2 className="text-[22px] font-bold text-[#2C2C2A] mb-6 text-center">Compétences terrain</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+            {[
+              "Analyse de faisabilité",
+              "Coordination technique",
+              "Développement commercial BTP",
+              "Études de budget et devis",
+              "Suivi de chantier",
+              "Réseau de prescripteurs",
+              "Accompagnement particuliers",
+              "Valorisation foncière",
+              "Zone Genevois français",
+            ].map((c) => (
+              <div key={c} className="flex items-center gap-2 p-3 bg-white">
+                <span className="text-[#BA7517] text-[10px]">◆</span>
+                <span className="text-[13px] text-[#2C2C2A] font-medium">{c}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Mentions légales / structure */}
       <section className="bg-[#2C2C2A] py-10 px-5">
         <div className="max-w-[900px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           {[
-            { label: "Forme juridique", value: "Entreprise individuelle" },
-            { label: "Code NAF", value: "71.12B — Ingénierie, études techniques" },
+            { label: "Localisation", value: "Annemasse (74100)" },
             { label: "Zone d'intervention", value: "Haute-Savoie · Ain · Genevois français" },
+            { label: "Langues", value: "Français · Allemand · Anglais" },
           ].map((item) => (
             <div key={item.label}>
               <div className="text-[11px] uppercase tracking-widest text-white/40 mb-1">{item.label}</div>
@@ -190,9 +214,9 @@ export default function AProposPage() {
       {/* CTA */}
       <section className="bg-[#F2EDE6] py-14 px-5 text-center">
         <div className="max-w-[580px] mx-auto">
-          <h2 className="text-[26px] font-bold text-[#2C2C2A] mb-3">Travaillons ensemble</h2>
+          <h2 className="text-[26px] font-bold text-[#2C2C2A] mb-3">Parlons de votre projet</h2>
           <p className="text-[16px] text-[#888780] leading-[1.7] mb-8">
-            Premier échange gratuit avec Mahmoud — analyse de votre projet, faisabilité, budget estimatif. Réponse sous 48h.
+            Premier échange gratuit avec Mahmoud — analyse de faisabilité, budget estimatif, zone d&apos;intervention. Réponse sous 48h.
           </p>
           <Link href="/demande-etude/" className="inline-block bg-[#BA7517] text-white text-[17px] font-bold px-8 py-4 no-underline hover:bg-[#9E6312] transition-colors">
             Demande d&apos;étude gratuite →
