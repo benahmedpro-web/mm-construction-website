@@ -105,7 +105,7 @@ export default function ViePriveePage() {
           <section>
             <h2 className="text-[20px] font-bold text-[#2C2C2A] mb-4 pb-2 border-b border-[#D9D4CC]">6. Cookies</h2>
             <p className="text-[15px] text-[#888780] leading-[1.7]">
-              Ce site n&apos;utilise pas de cookies de traçage publicitaire, ni de cookies d&apos;analyse de comportement (Google Analytics, Hotjar, etc.). Aucun bandeau de consentement aux cookies n&apos;est nécessaire. Les seuls cookies susceptibles d&apos;être déposés sont des cookies techniques strictement nécessaires au fonctionnement du site (session, sécurité), qui ne nécessitent pas de consentement préalable.
+              Ce site n&apos;utilise pas de cookies de traçage publicitaire, ni de cookies d&apos;analyse de comportement (Google Analytics, Hotjar, etc.). Aucun bandeau de consentement aux cookies n&apos;est nécessaire. Les seuls cookies susceptibles d&apos;être déposés sont des cookies techniques strictement nécessaires au fonctionnement du site (session, sécurité), qui ne nécessitent pas de consentement préalable. <Link href="/politique-cookies/" className="text-[#BA7517] no-underline hover:underline">Voir la politique de cookies complète →</Link>
             </p>
           </section>
 

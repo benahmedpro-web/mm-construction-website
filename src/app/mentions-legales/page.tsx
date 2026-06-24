@@ -77,8 +77,10 @@ export default function MentionsLegalesPage() {
             </p>
           </section>
 
-          <div className="bg-[#F2EDE6] p-5 text-[14px] text-[#888780]">
-            Pour toute question relative aux mentions légales, contactez-nous à <a href="mailto:benahmed.pro@icloud.com" className="text-[#BA7517] no-underline hover:underline">benahmed.pro@icloud.com</a> ou via la <Link href="/contact/" className="text-[#BA7517] no-underline hover:underline">page de contact</Link>.
+          <div className="bg-[#F2EDE6] p-5 text-[14px] text-[#888780] flex flex-wrap gap-x-5 gap-y-2 items-center">
+            <span>Pour toute question relative aux mentions légales, contactez-nous à <a href="mailto:benahmed.pro@icloud.com" className="text-[#BA7517] no-underline hover:underline">benahmed.pro@icloud.com</a> ou via la <Link href="/contact/" className="text-[#BA7517] no-underline hover:underline">page de contact</Link>.</span>
+            <Link href="/politique-cookies/" className="text-[#BA7517] no-underline hover:underline whitespace-nowrap">Politique de cookies →</Link>
+            <Link href="/vie-privee/" className="text-[#BA7517] no-underline hover:underline whitespace-nowrap">Politique de confidentialité →</Link>
           </div>
         </div>
       </article>
