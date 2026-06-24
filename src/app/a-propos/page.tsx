@@ -115,7 +115,7 @@ export default function AProposPage() {
               Mahmoud Ben Ahmed commence en 2003 chez Maisons Pierre en Île-de-France, l&apos;un des premiers constructeurs CMI de France. Il y apprend le métier de A à Z : prospection, analyse de faisabilité, coordination technique, suivi de chantier. Il enchaîne ensuite chez Geoxia, puis revient chez Maisons Pierre en 2014 — où il progresse en trois ans de commercial à responsable d&apos;agence, avec 92 projets à son actif.
             </p>
             <p className="text-[16px] text-[#888780] leading-[1.8] mb-4">
-              En 2017, il prend la direction d&apos;agence des Demeures Traditionnelles (Groupe Lesterlin) à Beauvais — 41 projets supplémentaires sur des clients particuliers premium. En 2020, il devient indépendant et crée M&amp;M CONSTRUCTION : accompagnement de projets de construction individuelle en totale autonomie, sans structure intermédiaire ni catalogue imposé.
+              En 2017, il prend la direction d&apos;agence des Demeures Traditionnelles (Groupe Lesterlin) à Beauvais — 41 projets supplémentaires sur des clients particuliers premium. En 2020, il devient indépendant pour accompagner des projets de construction individuelle en totale autonomie, sans structure intermédiaire ni catalogue imposé.
             </p>
             <p className="text-[16px] text-[#888780] leading-[1.8] mb-4">
               Aujourd&apos;hui basé à Annemasse, il intervient sur la Haute-Savoie, l&apos;Ain et le Genevois français. Son réseau — architectes, maîtres d&apos;œuvre, bureaux d&apos;études, géomètres, notaires — s&apos;est construit sur deux décennies de terrain.
