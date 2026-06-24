@@ -41,7 +41,7 @@ export function TestimonialSection() {
           <div>
             <div className="relative bg-[#2C2C2A] aspect-[4/3] flex flex-col items-center justify-center text-center p-6 overflow-hidden">
               <Image
-                src="/images/5.jpg"
+                src="/images/mahmoud-ben-ahmed.jpg"
                 alt="Mahmoud Ben Ahmed — M&M CONSTRUCTION"
                 fill
                 className="object-cover opacity-40"
