@@ -106,7 +106,7 @@ export default async function AnnonceDetailPage({ params }: Props) {
             </div>
 
             {/* Points clés */}
-            <div className="bg-[#F2EDE6] p-6">
+            <div className="bg-[#F2EDE6] p-6 mb-8">
               <h2 className="text-[16px] font-bold text-[#2C2C2A] uppercase tracking-wide mb-4">Points clés</h2>
               <ul className="flex flex-col gap-2.5">
                 {a.points.map((p, i) => (
@@ -117,6 +117,33 @@ export default async function AnnonceDetailPage({ params }: Props) {
                 ))}
               </ul>
             </div>
+
+            {/* Contexte local */}
+            {a.contexte && (
+              <div className="mb-8">
+                <h2 className="text-[20px] font-bold text-[#2C2C2A] mb-3">Contexte du projet</h2>
+                <p className="text-[15px] text-[#888780] leading-[1.8]">{a.contexte}</p>
+              </div>
+            )}
+
+            {/* Guides liés */}
+            {a.guidesLies && a.guidesLies.length > 0 && (
+              <div className="border-t border-[#D9D4CC] pt-6">
+                <h2 className="text-[16px] font-bold text-[#2C2C2A] uppercase tracking-wide mb-4">Guides utiles pour ce projet</h2>
+                <div className="flex flex-col gap-2">
+                  {a.guidesLies.map((g, i) => (
+                    <Link
+                      key={i}
+                      href={g.href}
+                      className="flex items-center gap-3 p-3 bg-[#F2EDE6] no-underline hover:bg-[#E8E2D9] transition-colors group"
+                    >
+                      <span className="text-[#BA7517] flex-shrink-0">→</span>
+                      <span className="text-[14px] font-medium text-[#2C2C2A] group-hover:text-[#BA7517] transition-colors">{g.titre}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Colonne droite — fiche + CTA sticky */}

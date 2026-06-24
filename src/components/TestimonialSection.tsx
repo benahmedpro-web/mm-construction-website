@@ -164,7 +164,7 @@ export function TestimonialSection() {
                 alt="Mahmoud Ben Ahmed — M&M CONSTRUCTION"
                 width={800}
                 height={600}
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="(max-width: 768px) 100vw, 400px"
                 className="absolute inset-0 w-full h-full object-cover opacity-40"
               />
               <div className="relative z-10 h-full flex flex-col items-center justify-center text-center p-6">

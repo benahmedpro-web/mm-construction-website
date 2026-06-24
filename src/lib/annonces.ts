@@ -1,5 +1,10 @@
 export type Statut = "Disponible" | "En cours" | "Livré";
 
+export interface GuideLie {
+  titre: string;
+  href: string;
+}
+
 export interface Annonce {
   slug: string;
   commune: string;
@@ -16,6 +21,8 @@ export interface Annonce {
   description: string[];
   points: string[];
   zone: string;
+  contexte: string;
+  guidesLies: GuideLie[];
 }
 
 export const annonces: Annonce[] = [
@@ -49,6 +56,11 @@ export const annonces: Annonce[] = [
       "Délai estimé : 14 à 16 mois permis compris",
       "Garanties décennales artisans vérifiées",
     ],
+    contexte: "Annemasse est la commune centrale du Genevois français côté France, avec un bassin d'emploi fortement lié à Genève. Le foncier y est rare et le PLU strict en zone UA (CES 0,25). Ce projet de plain-pied de 120 m² respecte scrupuleusement les contraintes réglementaires tout en maximisant l'exposition plein sud. Terrain viabilisé, à 15 minutes à pied des commerces, 20 minutes de la gare de Genève-Cornavin. Zone sismique 3 prise en compte dans la conception ossature bois — bureau d'études structure mandaté. L'orientation bioclimatique permet de réduire les besoins de chauffage de 30 % par rapport à une maison standard RE2020.",
+    guidesLies: [
+      { titre: "Maison ossature bois : avantages, coûts et délais", href: "/guides/maison-ossature-bois/" },
+      { titre: "Permis de construire en Genevois français", href: "/guides/permis-construire-genevois/" },
+    ],
   },
   {
     slug: "maison-ossature-bois-saint-julien-en-genevois-74",
@@ -79,6 +91,11 @@ export const annonces: Annonce[] = [
       "Charpentier ossature bois sélectionné, décennale bois vérifiée",
       "Suivi de chantier hebdomadaire inclus dans les honoraires",
       "Livraison estimée décembre 2026",
+    ],
+    contexte: "Saint-Julien-en-Genevois est l'une des communes les plus prisées du Genevois français par les frontaliers travaillant à Genève (15 km). Le permis de construire y est instruit par la DDT74, délai moyen 3 à 4 mois — ici obtenu en 4 mois avec purge de recours des tiers. La commune est classée en zone sismique 3 : calcul de structure et renforts d'ossature obligatoires. Le terrain en légère pente (8 %) a nécessité une adaptation architecturale en deux niveaux, avec rez-de-chaussée côté montagne et terrasse sur jardin. Vue dégagée sur le Salève, préservée par la topographie du secteur résidentiel.",
+    guidesLies: [
+      { titre: "Permis de construire en Genevois français", href: "/guides/permis-construire-genevois/" },
+      { titre: "Maîtrise d'œuvre vs CCMI", href: "/guides/moe-vs-ccmi/" },
     ],
   },
   {
@@ -111,6 +128,11 @@ export const annonces: Annonce[] = [
       "Budget détaillé par corps de métier",
       "Délai estimé : 16 à 18 mois permis compris",
     ],
+    contexte: "Cranves-Sales est une commune résidentielle du Genevois français prisée pour son calme et sa proximité avec Annemasse (10 min) et Genève (20 min via l'A40). Le PLU zone UC autorise un CES de 0,30 — permettant une emprise de 360 m² sur ce terrain de 1 200 m². L'environnement bâti est majoritairement composé de maisons individuelles des années 1980-2000 ; la maison R+1 projetée en ossature bois apporte une architecture contemporaine avec une double hauteur séjour-cuisine et une suite parentale à l'étage. Étude de faisabilité complète (plans, budget corps de métier, simulation financement) disponible sur simple demande.",
+    guidesLies: [
+      { titre: "Maison ossature bois : avantages, coûts et délais", href: "/guides/maison-ossature-bois/" },
+      { titre: "RE2020 et maison bois en Haute-Savoie", href: "/guides/re2020-maison-bois/" },
+    ],
   },
   {
     slug: "maison-ossature-bois-archamps-74",
@@ -141,6 +163,11 @@ export const annonces: Annonce[] = [
       "Zone sismique 3 — renforts ossature prévus",
       "Commerces, écoles, médecins à 5 min",
       "Délai estimé : 14 à 16 mois",
+    ],
+    contexte: "Archamps est une commune en fort développement du Genevois français, connue pour son technopôle international (200+ entreprises, 3 000 emplois) et son accès direct à Genève en 10 minutes via l'A40. Le PLU d'Archamps impose une attention particulière aux aspects architecturaux : bardages, toitures et insertion paysagère sont soumis à avis du service instructeur. La zone sismique 3 est systématiquement intégrée dans la conception de l'ossature bois avec renforts calculés. Ce projet bioclimatique de plain-pied optimise les apports solaires passifs via de grandes baies sur terrasse sud et un débord de toiture calculé pour le confort estival.",
+    guidesLies: [
+      { titre: "RE2020 et maison bois en Haute-Savoie", href: "/guides/re2020-maison-bois/" },
+      { titre: "Maison ossature bois : avantages, coûts et délais", href: "/guides/maison-ossature-bois/" },
     ],
   },
   {
@@ -173,6 +200,11 @@ export const annonces: Annonce[] = [
       "Artisans locaux 01/74 — décennales vérifiées",
       "Visite de référence possible sur demande",
     ],
+    contexte: "Gex est la commune principale du Pays de Gex (Ain), territoire en forte croissance lié à la frontière suisse et à la présence du CERN et des organisations internationales à Genève. Le marché immobilier y est parmi les plus tendus de l'Ain — la construction neuve individuelle est une alternative crédible à l'achat dans l'ancien. Ce projet livré en octobre 2024 illustre la méthode M&M CONSTRUCTION : budget de 400 000 € respecté à 2 % près, délai de 14 mois tenu, zéro réserve non soldée à la réception. Dossier de référence complet disponible pour les futurs clients souhaitant comprendre le déroulement d'un chantier MOE.",
+    guidesLies: [
+      { titre: "Maîtrise d'œuvre vs CCMI", href: "/guides/moe-vs-ccmi/" },
+      { titre: "Comment coordonner un chantier maison bois", href: "/guides/coordonner-chantier-bois/" },
+    ],
   },
   {
     slug: "extension-ossature-bois-thonon-les-bains-74",
@@ -203,6 +235,11 @@ export const annonces: Annonce[] = [
       "Bardage douglas harmonisé avec l'existant",
       "Livraison estimée février 2026",
       "Client suivi depuis la conception — budget tenu",
+    ],
+    contexte: "Thonon-les-Bains est la deuxième ville de Haute-Savoie après Annecy, implantée sur les rives du lac Léman à 30 minutes de Genève. Son tissu pavillonnier des années 1980-2000 génère une forte demande d'extension et de rénovation thermique. Ce projet d'extension de 45 m² illustre la complexité technique d'une jonction ossature bois sur maçonnerie ancienne : isolation par l'extérieur côté mur existant pour supprimer les ponts thermiques, pare-vapeur continu traité à la jonction, bardage douglas aligné sur les matériaux existants. La déclaration préalable (< 40 m² en zone urbaine) a été obtenue en 2 mois. Livraison estimée en février 2026.",
+    guidesLies: [
+      { titre: "Extension ossature bois : permis, coût, délais", href: "/guides/extension-ossature-bois/" },
+      { titre: "Comment choisir ses artisans pour une maison bois", href: "/guides/choisir-artisans-maison-bois/" },
     ],
   },
 ];

@@ -82,6 +82,26 @@ const jsonLdBusiness = {
     bestRating: "5",
     worstRating: "1",
   },
+  review: [
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Jocelyn S." },
+      reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+      reviewBody: "Excellent professionnel, très à l'écoute qui a su cerner nos besoins et envies. Disponible, réactif et rassurant tout au long du processus, je recommande fortement.",
+    },
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Supa W." },
+      reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+      reviewBody: "Bienveillant, à l'écoute, visionnaire, Mr Ben Ahmed est un professionnel de qualité. Ses analyses sont justes et pertinentes. Vous serez entre de bonnes mains.",
+    },
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Martin M." },
+      reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+      reviewBody: "M. Ben Ahmed est un professionnel très consciencieux. Grâce à lui nous avons pu construire notre maison. Vous pouvez lui faire confiance pour votre projet.",
+    },
+  ],
 };
 
 const jsonLdWebSite = {

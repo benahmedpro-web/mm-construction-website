@@ -50,11 +50,12 @@ const valeurs = [
 ];
 
 const parcours = [
-  { annee: "2003", evenement: "Débuts en CMI chez Maisons Pierre en Île-de-France — 47 projets commercialisés" },
-  { annee: "2006", evenement: "Commercial chez Geoxia — 17 projets accompagnés en Île-de-France" },
-  { annee: "2014", evenement: "Retour chez Maisons Pierre — triple progression en 3 ans : commercial, ingénieur commercial, responsable d'agence. 92 projets commercialisés" },
-  { annee: "2017", evenement: "Responsable d'agence chez Les Demeures Traditionnelles (Groupe Lesterlin), Beauvais — 41 projets réalisés" },
-  { annee: "2020", evenement: "Création de M&M CONSTRUCTION — indépendant, projets de construction individuelle en Haute-Savoie. 24 projets conduits à ce jour" },
+  { annee: "2003", evenement: "Débuts en CMI chez Maisons Pierre en Île-de-France — 47 projets commercialisés. Formation complète au cycle de vente en construction individuelle : analyse de faisabilité, permis de construire, coordination chantier." },
+  { annee: "2006", evenement: "Commercial chez Geoxia — 17 projets accompagnés en Île-de-France. Découverte d'un second modèle CMI et des pratiques contractuelles CCMI." },
+  { annee: "2014", evenement: "Retour chez Maisons Pierre — triple progression en 3 ans : commercial, ingénieur commercial, responsable d'agence. 92 projets commercialisés dont les premières maisons ossature bois du catalogue." },
+  { annee: "2017", evenement: "Responsable d'agence chez Les Demeures Traditionnelles (Groupe Lesterlin), Beauvais — 41 projets réalisés sur une clientèle premium. Développement d'une expertise sur la construction haut de gamme et les matériaux biosourcés." },
+  { annee: "2018", evenement: "Spécialisation maison ossature bois — formation technique DTU 31.2, certification Qualibat, réseau charpentiers-ossaturistes Haute-Savoie constitué." },
+  { annee: "2020", evenement: "Création de M&M CONSTRUCTION à Annemasse — indépendant, projets de construction individuelle en Haute-Savoie, Ain et Genevois français. 24 projets conduits à ce jour, dont 6 livrés et réceptionnés." },
 ];
 
 export default function AProposPage() {
@@ -83,6 +84,7 @@ export default function AProposPage() {
                 src="/images/mahmoud-ben-ahmed.jpg"
                 alt="Mahmoud Ben Ahmed — M&M CONSTRUCTION"
                 fill
+                sizes="(max-width: 768px) 100vw, 300px"
                 className="object-cover"
               />
             </div>
@@ -118,10 +120,10 @@ export default function AProposPage() {
               Mahmoud Ben Ahmed commence en 2003 chez Maisons Pierre en Île-de-France, l&apos;un des premiers constructeurs CMI de France. Il y apprend le métier de A à Z : prospection, analyse de faisabilité, coordination technique, suivi de chantier. Il enchaîne ensuite chez Geoxia, puis revient chez Maisons Pierre en 2014 — où il progresse en trois ans de commercial à responsable d&apos;agence, avec 92 projets à son actif.
             </p>
             <p className="text-[16px] text-[#888780] leading-[1.8] mb-4">
-              En 2017, il prend la direction d&apos;agence des Demeures Traditionnelles (Groupe Lesterlin) à Beauvais — 41 projets supplémentaires sur des clients particuliers premium. En 2020, il devient indépendant pour accompagner des projets de construction individuelle en totale autonomie, sans structure intermédiaire ni catalogue imposé.
+              En 2017, il prend la direction d&apos;agence des Demeures Traditionnelles (Groupe Lesterlin) à Beauvais — 41 projets supplémentaires sur une clientèle premium. En 2018, il se spécialise sur la maison ossature bois : formation technique DTU 31.2, réseau de charpentiers-ossaturistes qualifiés Qualibat sur la Haute-Savoie et l&apos;Ain. En 2020, il devient indépendant pour accompagner des projets de construction individuelle en totale autonomie, sans structure intermédiaire ni catalogue imposé.
             </p>
             <p className="text-[16px] text-[#888780] leading-[1.8] mb-4">
-              Aujourd&apos;hui basé à Annemasse, il intervient sur la Haute-Savoie, l&apos;Ain et le Genevois français.
+              Aujourd&apos;hui basé à Annemasse, il intervient sur la Haute-Savoie, l&apos;Ain et le Genevois français. Chaque projet est conduit en maîtrise d&apos;œuvre : plan sur mesure, artisans sélectionnés pour leurs références locales et leurs assurances décennales, suivi de chantier hebdomadaire, réception avec grille de contrôle qualité.
             </p>
             <div className="bg-[#F2EDE6] p-5 mt-6">
               <p className="text-[15px] text-[#2C2C2A] leading-[1.7] italic">
@@ -172,8 +174,91 @@ export default function AProposPage() {
         </div>
       </section>
 
-      {/* Compétences */}
+      {/* Projets récents */}
+      <section className="bg-white py-12 px-5">
+        <div className="max-w-[900px] mx-auto">
+          <h2 className="text-[22px] font-bold text-[#2C2C2A] mb-2">Projets récents</h2>
+          <p className="text-[15px] text-[#888780] mb-8">Une sélection de projets conduits depuis 2020 en Haute-Savoie, Ain et Genevois français.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {[
+              {
+                commune: "Gex (01)",
+                type: "Maison ossature bois — 130 m²",
+                statut: "Livré octobre 2024",
+                detail: "Budget 400 000 € — tenu à 2 % près. 14 mois de chantier permis compris. Zéro réserve non soldée à la réception.",
+              },
+              {
+                commune: "Annemasse (74)",
+                type: "Maison ossature bois — 120 m²",
+                statut: "Disponible",
+                detail: "Projet plain-pied bioclimatique. PLU zone UA — CES 0,25. Orientation plein sud, bureau d'études structure zone sismique 3.",
+              },
+              {
+                commune: "Cranves-Sales (74)",
+                type: "Maison ossature bois R+1 — 145 m²",
+                statut: "Disponible",
+                detail: "Double hauteur séjour-cuisine, suite parentale à l'étage. Terrain en pente 8 % — adaptation architecturale sur deux niveaux.",
+              },
+              {
+                commune: "Thonon-les-Bains (74)",
+                type: "Extension ossature bois — 45 m²",
+                statut: "En cours — livraison fév. 2026",
+                detail: "Jonction ossature bois sur maçonnerie ancienne. Déclaration préalable obtenue en 2 mois. Bardage douglas harmonisé.",
+              },
+            ].map((p, i) => (
+              <div key={i} className="border border-[#D9D4CC] p-5">
+                <div className="text-[11px] text-[#BA7517] font-bold uppercase tracking-wide mb-1">{p.statut}</div>
+                <div className="text-[17px] font-black text-[#2C2C2A] mb-0.5">{p.commune}</div>
+                <div className="text-[13px] text-[#888780] mb-3">{p.type}</div>
+                <p className="text-[13px] text-[#888780] leading-[1.6]">{p.detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Zone d'intervention */}
       <section className="bg-[#F2EDE6] py-12 px-5">
+        <div className="max-w-[900px] mx-auto">
+          <h2 className="text-[22px] font-bold text-[#2C2C2A] mb-2">Zone d&apos;intervention</h2>
+          <p className="text-[15px] text-[#888780] mb-8">M&amp;M CONSTRUCTION intervient exclusivement sur le bassin Haute-Savoie / Ain / Genevois français — une zone géographique restreinte pour maintenir un suivi de chantier de proximité.</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {[
+              {
+                dept: "Haute-Savoie (74)",
+                communes: ["Annemasse", "Cranves-Sales", "Saint-Julien-en-Genevois", "Thonon-les-Bains", "Archamps", "Annecy (sur demande)"],
+                note: "Zone principale — délai d'intervention < 30 min",
+              },
+              {
+                dept: "Ain (01)",
+                communes: ["Gex", "Divonne-les-Bains", "Ferney-Voltaire", "Saint-Genis-Pouilly", "Prévessin-Moëns"],
+                note: "Pays de Gex — forte demande frontaliers",
+              },
+              {
+                dept: "Genevois français",
+                communes: ["Toutes communes limitrophes Genève côté France", "Zones ZPNAF exclues sauf étude préalable"],
+                note: "Zone sismique 3 — bureau d'études systématique",
+              },
+            ].map((z, i) => (
+              <div key={i} className="bg-white p-5">
+                <div className="text-[15px] font-black text-[#2C2C2A] mb-3">{z.dept}</div>
+                <ul className="flex flex-col gap-1.5 mb-4">
+                  {z.communes.map((c) => (
+                    <li key={c} className="flex items-start gap-2 text-[13px] text-[#888780]">
+                      <span className="text-[#BA7517] text-[10px] mt-1 flex-shrink-0">◆</span>
+                      {c}
+                    </li>
+                  ))}
+                </ul>
+                <div className="text-[11px] text-[#BA7517] font-bold uppercase tracking-wide border-t border-[#D9D4CC] pt-3">{z.note}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Compétences */}
+      <section className="bg-white py-12 px-5">
         <div className="max-w-[900px] mx-auto">
           <h2 className="text-[22px] font-bold text-[#2C2C2A] mb-6 text-center">Compétences terrain</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -188,7 +273,7 @@ export default function AProposPage() {
               "Valorisation foncière",
               "Zone Genevois français",
             ].map((c) => (
-              <div key={c} className="flex items-center gap-2 p-3 bg-white">
+              <div key={c} className="flex items-center gap-2 p-3 bg-[#F2EDE6]">
                 <span className="text-[#BA7517] text-[10px]">◆</span>
                 <span className="text-[13px] text-[#2C2C2A] font-medium">{c}</span>
               </div>
