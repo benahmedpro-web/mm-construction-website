@@ -194,12 +194,6 @@ export default function GuideMoeVsCcmiPage() {
               Le CCMI peut convenir si vous souhaitez une maison standard rapidement, sans vous impliquer dans le choix des artisans, et si la garantie de livraison à prix et délais fixes est votre priorité absolue. Dans ce cas, comparez plusieurs constructeurs locaux et vérifiez leurs références dans la zone.
             </p>
 
-            <div className="border-l-4 border-[#BA7517] pl-5 my-10">
-              <p className="text-[16px] text-[#2C2C2A] leading-[1.8] font-medium">
-                &quot;En 20 ans de projets en Haute-Savoie et Genevois, j&apos;ai vu des chantiers CCMI se passer très bien, et d&apos;autres catastrophiquement. La qualité dépend des artisans sous-jacents — que vous ne choisissez pas. En MOE, vous choisissez, vous voyez, vous contrôlez. C&apos;est la différence fondamentale.&quot;
-              </p>
-              <p className="text-[13px] text-[#888780] mt-2">— Mahmoud Ben Ahmed, M&M CONSTRUCTION</p>
-            </div>
 
           </div>
         </article>
