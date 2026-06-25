@@ -48,6 +48,10 @@ export function Header() {
             </button>
             {servicesDropdown && (
               <div className="absolute top-full left-0 bg-white border border-[#D9D4CC] shadow-lg min-w-[360px] z-50 p-6 flex flex-col gap-4">
+                <Link href="/faire-construire-haute-savoie/" className="block no-underline hover:text-[#BA7517] group border-b border-[#D9D4CC] pb-4">
+                  <div className="font-bold text-[#2C2C2A] text-[15px] mb-1 group-hover:text-[#BA7517]">Faire construire en Haute-Savoie</div>
+                  <div className="text-[#888780] text-[13px]">Guide complet pour votre projet de construction.</div>
+                </Link>
                 <Link href="/maison-ossature-bois/" className="block no-underline hover:text-[#BA7517] group">
                   <div className="font-bold text-[#2C2C2A] text-[15px] mb-1 group-hover:text-[#BA7517]">Maison ossature bois neuve</div>
                   <div className="text-[#888780] text-[13px]">Construction complète, de la conception à la réception.</div>
@@ -103,6 +107,7 @@ export function Header() {
       {/* Mobile menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white border-t border-[#D9D4CC] px-5 py-4 flex flex-col gap-0">
+          <Link href="/faire-construire-haute-savoie/" className="py-3 text-[16px] text-[#2C2C2A] border-b border-[#D9D4CC] no-underline">Faire construire en Haute-Savoie</Link>
           <Link href="/maison-ossature-bois/" className="py-3 text-[16px] text-[#2C2C2A] border-b border-[#D9D4CC] no-underline">Maison ossature bois</Link>
           <Link href="/extension-bois/" className="py-3 text-[16px] text-[#2C2C2A] border-b border-[#D9D4CC] no-underline">Extension bois</Link>
           <Link href="/renovation-bois/" className="py-3 text-[16px] text-[#2C2C2A] border-b border-[#D9D4CC] no-underline">Rénovation bois</Link>
