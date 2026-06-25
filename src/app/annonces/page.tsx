@@ -85,27 +85,36 @@ export default function AnnoncesPage() {
                   <div className="text-[13px] text-[#BA7517] font-bold mb-3">{a.type}</div>
 
                   {/* Specs */}
-                  <div className="grid grid-cols-3 gap-2 mb-4 py-3 border-y border-[#D9D4CC]">
-                    <div className="text-center">
-                      <div className="text-[15px] font-black text-[#2C2C2A]">{a.surfaceTerrain}</div>
-                      <div className="text-[10px] text-[#888780]">m² terrain</div>
+                  {a.type === "Terrain à bâtir" ? (
+                    <div className="grid grid-cols-1 gap-2 mb-4 py-3 border-y border-[#D9D4CC]">
+                      <div className="text-center">
+                        <div className="text-[15px] font-black text-[#2C2C2A]">{a.surfaceTerrain > 0 ? a.surfaceTerrain : "—"}</div>
+                        <div className="text-[10px] text-[#888780]">m² terrain</div>
+                      </div>
                     </div>
-                    <div className="text-center border-x border-[#D9D4CC]">
-                      <div className="text-[15px] font-black text-[#2C2C2A]">{a.surfaceHabitable}</div>
-                      <div className="text-[10px] text-[#888780]">m² habitables</div>
+                  ) : (
+                    <div className="grid grid-cols-3 gap-2 mb-4 py-3 border-y border-[#D9D4CC]">
+                      <div className="text-center">
+                        <div className="text-[15px] font-black text-[#2C2C2A]">{a.surfaceTerrain}</div>
+                        <div className="text-[10px] text-[#888780]">m² terrain</div>
+                      </div>
+                      <div className="text-center border-x border-[#D9D4CC]">
+                        <div className="text-[15px] font-black text-[#2C2C2A]">{a.surfaceHabitable}</div>
+                        <div className="text-[10px] text-[#888780]">m² habitables</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-[15px] font-black text-[#2C2C2A]">{a.pieces}</div>
+                        <div className="text-[10px] text-[#888780]">pièces</div>
+                      </div>
                     </div>
-                    <div className="text-center">
-                      <div className="text-[15px] font-black text-[#2C2C2A]">{a.pieces}</div>
-                      <div className="text-[10px] text-[#888780]">pièces</div>
-                    </div>
-                  </div>
+                  )}
 
                   <p className="text-[13px] text-[#888780] leading-[1.6] mb-4 flex-1">{a.accroche}</p>
 
                   {/* Prix */}
                   <div className="flex items-end justify-between mt-auto">
                     <div>
-                      <div className="text-[11px] text-[#888780]">Budget estimé</div>
+                      <div className="text-[11px] text-[#888780]">{a.type === "Terrain à bâtir" ? "Prix du terrain" : "Budget estimé"}</div>
                       <div className="text-[20px] font-black text-[#BA7517]">{formatBudget(a.budget)}</div>
                     </div>
                     <span className="inline-block bg-[#2C2C2A] text-white text-[13px] font-bold px-4 py-2.5 group-hover:bg-[#BA7517] transition-colors">
