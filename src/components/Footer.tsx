@@ -23,6 +23,7 @@ const col3Links = [
 
 const col4Links = [
   { label: "À propos", href: "/a-propos/" },
+  { label: "Témoignages clients", href: "/temoignages/" },
   { label: "Annonces", href: "/annonces/" },
   { label: "Demande d'étude gratuite", href: "/demande-etude/" },
   { label: "Contact", href: "/contact/" },
