@@ -14,13 +14,25 @@ const statutColors: Record<string, string> = {
   "Livré":      "bg-[#F2EDE6] text-[#888780]",
 };
 
+const toutesCommunes = [...new Set(annonces.map((a) => a.commune))].sort((a, b) => a.localeCompare(b, "fr"));
+
 function formatBudget(n: number) {
   return new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
 }
 
 export default function AnnoncesPage() {
   const [actif, setActif] = useState<Filtre>("Tous");
-  const visibles = actif === "Tous" ? annonces : annonces.filter((a) => a.statut === actif);
+  const [communesFiltrees, setCommunesFiltrees] = useState<string[]>([]);
+
+  function toggleCommune(c: string) {
+    setCommunesFiltrees((prev) =>
+      prev.includes(c) ? prev.filter((x) => x !== c) : [...prev, c]
+    );
+  }
+
+  const visibles = annonces
+    .filter((a) => actif === "Tous" || a.statut === actif)
+    .filter((a) => communesFiltrees.length === 0 || communesFiltrees.includes(a.commune));
 
   return (
     <main>
@@ -38,22 +50,58 @@ export default function AnnoncesPage() {
 
       {/* Filtres */}
       <div className="bg-white border-b border-[#D9D4CC] px-5 sticky top-0 z-30">
-        <div className="max-w-[1100px] mx-auto flex items-center gap-1 py-3">
-          <span className="text-[12px] text-[#888780] uppercase tracking-widest mr-3 hidden sm:block">Filtrer :</span>
-          {filtres.map((f) => (
-            <button
-              key={f}
-              onClick={() => setActif(f)}
-              className={`px-4 py-1.5 text-[13px] font-medium border transition-colors cursor-pointer ${
-                actif === f
-                  ? "bg-[#2C2C2A] text-white border-[#2C2C2A]"
-                  : "bg-white text-[#888780] border-[#D9D4CC] hover:border-[#BA7517] hover:text-[#BA7517]"
-              }`}
-            >
-              {f}
-            </button>
-          ))}
-          <span className="ml-auto text-[13px] text-[#888780]">{visibles.length} annonce{visibles.length > 1 ? "s" : ""}</span>
+        <div className="max-w-[1100px] mx-auto flex flex-wrap items-center gap-x-4 gap-y-2 py-3">
+          {/* Statut */}
+          <div className="flex items-center gap-1">
+            <span className="text-[12px] text-[#888780] uppercase tracking-widest mr-2 hidden sm:block">Statut :</span>
+            {filtres.map((f) => (
+              <button
+                key={f}
+                onClick={() => setActif(f)}
+                className={`px-4 py-1.5 text-[13px] font-medium border transition-colors cursor-pointer ${
+                  actif === f
+                    ? "bg-[#2C2C2A] text-white border-[#2C2C2A]"
+                    : "bg-white text-[#888780] border-[#D9D4CC] hover:border-[#BA7517] hover:text-[#BA7517]"
+                }`}
+              >
+                {f}
+              </button>
+            ))}
+          </div>
+
+          {/* Séparateur */}
+          <div className="hidden sm:block w-px h-5 bg-[#D9D4CC]" />
+
+          {/* Communes */}
+          <div className="flex items-center gap-1 flex-wrap">
+            <span className="text-[12px] text-[#888780] uppercase tracking-widest mr-2 hidden sm:block">Commune :</span>
+            {toutesCommunes.map((c) => {
+              const selected = communesFiltrees.includes(c);
+              return (
+                <button
+                  key={c}
+                  onClick={() => toggleCommune(c)}
+                  className={`px-3 py-1.5 text-[12px] font-medium border transition-colors cursor-pointer ${
+                    selected
+                      ? "bg-[#BA7517] text-white border-[#BA7517]"
+                      : "bg-white text-[#888780] border-[#D9D4CC] hover:border-[#BA7517] hover:text-[#BA7517]"
+                  }`}
+                >
+                  {c}
+                </button>
+              );
+            })}
+            {communesFiltrees.length > 0 && (
+              <button
+                onClick={() => setCommunesFiltrees([])}
+                className="px-2 py-1.5 text-[11px] text-[#888780] hover:text-[#2C2C2A] transition-colors cursor-pointer underline"
+              >
+                Tout effacer
+              </button>
+            )}
+          </div>
+
+          <span className="ml-auto text-[13px] text-[#888780] whitespace-nowrap">{visibles.length} annonce{visibles.length > 1 ? "s" : ""}</span>
         </div>
       </div>
 
