@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, FormEvent } from "react";
 import { annonces } from "@/lib/annonces";
 
 const filtres = ["Tous", "Disponible", "En cours", "Livré"] as const;
@@ -57,6 +57,37 @@ export default function AnnoncesPage() {
   const [search, setSearch] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  const [alerteOpen, setAlerteOpen] = useState(false);
+  const [alerteForm, setAlerteForm] = useState({ prenom: "", email: "", telephone: "" });
+  const [alerteState, setAlerteState] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  async function submitAlerte(e: FormEvent) {
+    e.preventDefault();
+    setAlerteState("loading");
+    try {
+      const res = await fetch("/api/alerte-annonce", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...alerteForm,
+          statut: actif,
+          communes: communesFiltrees,
+        }),
+      });
+      setAlerteState(res.ok ? "success" : "error");
+    } catch {
+      setAlerteState("error");
+    }
+  }
+
+  function closeAlerte() {
+    setAlerteOpen(false);
+    setTimeout(() => {
+      setAlerteState("idle");
+      setAlerteForm({ prenom: "", email: "", telephone: "" });
+    }, 300);
+  }
+
   useEffect(() => {
     if (!dropdownOpen) return;
     function handleClickOutside(e: MouseEvent) {
@@ -86,7 +117,7 @@ export default function AnnoncesPage() {
     .filter((a) => actif === "Tous" || a.statut === actif)
     .filter((a) => communesFiltrees.length === 0 || communesFiltrees.includes(a.commune));
 
-  return (
+  return (<>
     <main>
       <div className="bg-[#2C2C2A] py-14 px-5">
         <div className="max-w-[1100px] mx-auto">
@@ -220,7 +251,16 @@ export default function AnnoncesPage() {
             )}
           </div>
 
-          <span className="ml-auto text-[13px] text-[#888780] whitespace-nowrap">{visibles.length} annonce{visibles.length > 1 ? "s" : ""}</span>
+          <div className="ml-auto flex items-center gap-3">
+            <span className="text-[13px] text-[#888780] whitespace-nowrap">{visibles.length} annonce{visibles.length > 1 ? "s" : ""}</span>
+            <button
+              onClick={() => setAlerteOpen(true)}
+              className="flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-bold border border-[#BA7517] text-[#BA7517] hover:bg-[#BA7517] hover:text-white transition-colors cursor-pointer whitespace-nowrap"
+            >
+              <svg width="13" height="14" viewBox="0 0 13 14" fill="none"><path d="M6.5 1a4.5 4.5 0 0 1 4.5 4.5c0 2.5.8 3.5 1.3 4H.7C1.2 9 2 8 2 5.5A4.5 4.5 0 0 1 6.5 1ZM5 10.5h3a1.5 1.5 0 0 1-3 0Z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/></svg>
+              Créer une alerte
+            </button>
+          </div>
         </div>
       </div>
 
@@ -308,5 +348,101 @@ export default function AnnoncesPage() {
         </div>
       </section>
     </main>
-  );
+
+    {/* Modale alerte */}
+    {alerteOpen && (
+      <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+        <div className="absolute inset-0 bg-black/60" onClick={closeAlerte} />
+        <div className="relative bg-white w-full max-w-[460px] shadow-2xl">
+          {/* Header */}
+          <div className="bg-[#2C2C2A] px-6 py-5 flex items-start justify-between">
+            <div>
+              <div className="text-[11px] text-[#BA7517] uppercase tracking-widest font-bold mb-1">Annonces M&amp;M CONSTRUCTION</div>
+              <h2 className="text-white text-[20px] font-black leading-tight">Créer une alerte</h2>
+              <p className="text-white/50 text-[13px] mt-1">Soyez notifié(e) dès qu&apos;une annonce correspond à vos critères.</p>
+            </div>
+            <button onClick={closeAlerte} className="text-white/40 hover:text-white transition-colors cursor-pointer mt-0.5 ml-4 flex-shrink-0 text-[20px] leading-none">&times;</button>
+          </div>
+
+          {alerteState === "success" ? (
+            <div className="px-6 py-10 text-center">
+              <div className="text-[40px] mb-3">✓</div>
+              <p className="text-[18px] font-bold text-[#2C2C2A] mb-2">Alerte enregistrée !</p>
+              <p className="text-[14px] text-[#888780] leading-[1.7]">
+                Mahmoud Ben Ahmed vous contactera dès qu&apos;une annonce correspondant à vos critères est disponible.
+              </p>
+              <button onClick={closeAlerte} className="mt-6 inline-block bg-[#2C2C2A] text-white text-[14px] font-bold px-6 py-2.5 cursor-pointer hover:bg-[#BA7517] transition-colors">
+                Fermer
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={submitAlerte} className="px-6 py-5 flex flex-col gap-4">
+              {/* Récap critères */}
+              <div className="bg-[#F2EDE6] px-4 py-3 text-[13px] text-[#888780] leading-[1.7]">
+                <div className="font-bold text-[#2C2C2A] text-[11px] uppercase tracking-widest mb-1.5">Critères de recherche</div>
+                <div><span className="text-[#2C2C2A]">Statut :</span> {actif === "Tous" ? "Tous" : actif}</div>
+                <div>
+                  <span className="text-[#2C2C2A]">Communes :</span>{" "}
+                  {communesFiltrees.length === 0
+                    ? "Toutes (74 + 01)"
+                    : communesFiltrees.join(", ")}
+                </div>
+              </div>
+
+              {/* Champs */}
+              <div className="flex flex-col gap-3">
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-widest text-[#888780] mb-1.5">Prénom</label>
+                  <input
+                    type="text"
+                    value={alerteForm.prenom}
+                    onChange={(e) => setAlerteForm((f) => ({ ...f, prenom: e.target.value }))}
+                    placeholder="Votre prénom"
+                    className="w-full border border-[#D9D4CC] px-3 py-2.5 text-[14px] text-[#2C2C2A] outline-none focus:border-[#BA7517] placeholder-[#888780]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-widest text-[#888780] mb-1.5">Email <span className="text-[#BA7517]">*</span></label>
+                  <input
+                    type="email"
+                    required
+                    value={alerteForm.email}
+                    onChange={(e) => setAlerteForm((f) => ({ ...f, email: e.target.value }))}
+                    placeholder="votre@email.com"
+                    className="w-full border border-[#D9D4CC] px-3 py-2.5 text-[14px] text-[#2C2C2A] outline-none focus:border-[#BA7517] placeholder-[#888780]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-widest text-[#888780] mb-1.5">Téléphone <span className="text-[#888780] font-normal normal-case tracking-normal">(optionnel)</span></label>
+                  <input
+                    type="tel"
+                    value={alerteForm.telephone}
+                    onChange={(e) => setAlerteForm((f) => ({ ...f, telephone: e.target.value }))}
+                    placeholder="06 xx xx xx xx"
+                    className="w-full border border-[#D9D4CC] px-3 py-2.5 text-[14px] text-[#2C2C2A] outline-none focus:border-[#BA7517] placeholder-[#888780]"
+                  />
+                </div>
+              </div>
+
+              {alerteState === "error" && (
+                <p className="text-[13px] text-red-600">Une erreur est survenue. Réessayez ou contactez-nous directement.</p>
+              )}
+
+              <button
+                type="submit"
+                disabled={alerteState === "loading"}
+                className="w-full bg-[#BA7517] text-white text-[15px] font-bold py-3.5 cursor-pointer hover:bg-[#9E6312] transition-colors disabled:opacity-60"
+              >
+                {alerteState === "loading" ? "Enregistrement…" : "Créer l'alerte →"}
+              </button>
+
+              <p className="text-[11px] text-[#888780] text-center leading-[1.6]">
+                Vos données sont utilisées uniquement pour vous recontacter au sujet de cette recherche.
+              </p>
+            </form>
+          )}
+        </div>
+      </div>
+    )}
+  </>);
 }
