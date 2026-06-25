@@ -134,9 +134,6 @@ export default function RootLayout({
   return (
     <html lang="fr" className="h-full antialiased">
       <head>
-        <link rel="preload" href="/fonts/BrandonGrotesque-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/BrandonGrotesque-Bold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/BrandonGrotesque-Black.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBusiness) }}

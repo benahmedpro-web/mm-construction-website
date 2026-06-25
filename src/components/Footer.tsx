@@ -5,6 +5,8 @@ const col2Links = [
   { label: "Extension ossature bois", href: "/extension-bois/" },
   { label: "Rénovation & isolation bois", href: "/renovation-bois/" },
   { label: "Faire construire en Haute-Savoie", href: "/faire-construire-haute-savoie/" },
+  { label: "Maison bois Annecy", href: "/maison-ossature-bois-annecy/" },
+  { label: "Maison bois Thonon-les-Bains", href: "/maison-ossature-bois-thonon/" },
   { label: "Notre méthode MOE", href: "/notre-methode/" },
   { label: "Annonces", href: "/annonces/" },
 ];
