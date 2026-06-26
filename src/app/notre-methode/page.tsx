@@ -1,6 +1,17 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
+const BASE = "https://www.constructiondemaisons.com";
+
+const jsonLdBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Accueil", item: BASE + "/" },
+    { "@type": "ListItem", position: 2, name: "Notre méthode MOE", item: BASE + "/notre-methode/" },
+  ],
+};
+
 export const metadata: Metadata = {
   title: "Notre méthode MOE — Maîtrise d'œuvre maison bois | M&M CONSTRUCTION",
   description: "La méthode M&M CONSTRUCTION : évaluation, conception, permis, sélection artisans, coordination chantier, réception. Un maître d'œuvre spécialisé bois en Haute-Savoie.",
@@ -80,6 +91,7 @@ const phases = [
 export default function NotreMethodePage() {
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }} />
       {/* Hero */}
       <div className="bg-[#2C2C2A] py-20 px-5">
         <div className="max-w-[800px] mx-auto">
@@ -193,6 +205,11 @@ export default function NotreMethodePage() {
           <Link href="/demande-etude/" className="inline-block bg-[#BA7517] text-white text-[17px] font-bold px-8 py-4 no-underline hover:bg-[#9E6312] transition-colors">
             Configurer mon projet →
           </Link>
+          <p className="mt-5 text-[13px] text-[#888780]">
+            <Link href="/a-propos/" className="text-[#BA7517] no-underline hover:underline">→ À propos de Mahmoud Ben Ahmed</Link>
+            {" · "}
+            <Link href="/contact/" className="text-[#888780] no-underline hover:text-[#2C2C2A]">Nous contacter</Link>
+          </p>
         </div>
       </section>
     </main>

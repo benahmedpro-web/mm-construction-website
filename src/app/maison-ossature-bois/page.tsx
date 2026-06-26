@@ -10,6 +10,17 @@ export const metadata: Metadata = {
   },
 };
 
+const BASE = "https://www.constructiondemaisons.com";
+
+const jsonLdBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Accueil", item: BASE + "/" },
+    { "@type": "ListItem", position: 2, name: "Maison ossature bois", item: BASE + "/maison-ossature-bois/" },
+  ],
+};
+
 const points = [
   {
     title: "Conception adaptée à votre terrain",
@@ -36,6 +47,7 @@ const points = [
 export default function MaisonOssatureBoisPage() {
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }} />
       {/* Hero */}
       <div
         className="relative bg-[#2C2C2A] py-20 px-5 overflow-hidden"
@@ -74,7 +86,7 @@ export default function MaisonOssatureBoisPage() {
                 Un constructeur vous vend une maison catalogue avec des marges intégrées sur les matériaux et les artisans. Un maître d&apos;œuvre travaille pour vous : il sélectionne les meilleurs artisans locaux, négocie en votre nom, et assure un suivi indépendant du chantier.
               </p>
               <p className="text-[16px] text-[#888780] leading-[1.8]">
-                M&M CONSTRUCTION est spécialisé maison ossature bois. Ce n&apos;est pas un service parmi d&apos;autres — c&apos;est notre seul métier. Nous connaissons les spécificités structurelles du bois, les DTU applicables, les artisans compétents sur notre zone et les délais réels en Haute-Savoie.
+                M&M CONSTRUCTION est spécialisé maison ossature bois. Ce n&apos;est pas un service parmi d&apos;autres — c&apos;est notre seul métier. Nous connaissons les spécificités structurelles du bois, les DTU applicables, les artisans compétents sur notre zone et les délais réels en Haute-Savoie et Genevois français. Résultat : moins de surprises, plus de maîtrise sur votre chantier.
               </p>
             </div>
             <div className="bg-[#F2EDE6] p-6 flex flex-col gap-3">
@@ -152,6 +164,11 @@ export default function MaisonOssatureBoisPage() {
           <Link href="/demande-etude/" className="inline-block bg-[#BA7517] text-white text-[17px] font-bold px-8 py-4 no-underline hover:bg-[#9E6312] transition-colors">
             Configurer mon projet →
           </Link>
+          <p className="mt-5 text-[13px] text-[#888780]">
+            <Link href="/a-propos/" className="text-[#BA7517] no-underline hover:underline">→ En savoir plus sur Mahmoud Ben Ahmed</Link>
+            {" · "}
+            <Link href="/contact/" className="text-[#888780] no-underline hover:text-[#2C2C2A]">Nous contacter</Link>
+          </p>
         </div>
       </section>
     </main>

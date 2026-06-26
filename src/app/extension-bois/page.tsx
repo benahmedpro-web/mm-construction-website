@@ -2,6 +2,17 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 
+const BASE = "https://www.constructiondemaisons.com";
+
+const jsonLdBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Accueil", item: BASE + "/" },
+    { "@type": "ListItem", position: 2, name: "Extension ossature bois", item: BASE + "/extension-bois/" },
+  ],
+};
+
 export const metadata: Metadata = {
   title: "Extension ossature bois — Maître d'œuvre Haute-Savoie | M&M CONSTRUCTION",
   description: "M&M CONSTRUCTION coordonne votre extension ossature bois en Genevois français, Haute-Savoie et Ain. Permis de construire, artisans vérifiés, suivi complet.",
@@ -20,6 +31,7 @@ const etapes = [
 export default function ExtensionBoisPage() {
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }} />
       {/* Hero */}
       <div
         className="relative bg-[#2C2C2A] py-20 px-5 overflow-hidden"
@@ -117,6 +129,11 @@ export default function ExtensionBoisPage() {
           <Link href="/demande-etude/" className="inline-block bg-[#BA7517] text-white text-[17px] font-bold px-8 py-4 no-underline hover:bg-[#9E6312] transition-colors">
             Configurer mon projet →
           </Link>
+          <p className="mt-5 text-[13px] text-white/50">
+            <Link href="/a-propos/" className="text-[#BA7517] no-underline hover:underline">→ En savoir plus sur Mahmoud Ben Ahmed</Link>
+            {" · "}
+            <Link href="/contact/" className="text-white/50 no-underline hover:text-white">Nous contacter</Link>
+          </p>
         </div>
       </section>
     </main>
