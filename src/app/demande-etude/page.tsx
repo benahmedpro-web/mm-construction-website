@@ -1,274 +1,622 @@
 "use client";
 
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const typesProjet = [
-  "Maison ossature bois neuve",
-  "Extension ossature bois",
-  "Rénovation & isolation bois",
-  "Autre projet bois",
+// ─── Types ───────────────────────────────────────────────────────────────────
+
+type Answers = {
+  typeProjet: string;
+  zone: string;
+  terrainStatus: string;
+  surface: string;
+  budget: string;
+  delai: string;
+  prenom: string;
+  nom: string;
+  email: string;
+  telephone: string;
+  message: string;
+};
+
+const TOTAL_STEPS = 7;
+
+// ─── Step options ─────────────────────────────────────────────────────────────
+
+const TYPE_OPTIONS = [
+  {
+    id: "Maison neuve ossature bois",
+    label: "Maison neuve",
+    sublabel: "Construction individuelle en ossature bois",
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 9.5L12 3l9 6.5V21H3V9.5z"/>
+        <rect x="9" y="14" width="6" height="7"/>
+      </svg>
+    ),
+  },
+  {
+    id: "Extension ossature bois",
+    label: "Extension / surélévation",
+    sublabel: "Agrandissement d'une maison existante",
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="8" width="13" height="13"/>
+        <path d="M15 11h5a1 1 0 0 1 1 1v9H15V11z"/>
+        <path d="M2 8l6.5-5 6.5 5"/>
+      </svg>
+    ),
+  },
+  {
+    id: "Rénovation & isolation bois",
+    label: "Rénovation & isolation",
+    sublabel: "Amélioration énergétique bois",
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+      </svg>
+    ),
+  },
+  {
+    id: "Je cherche un terrain à bâtir",
+    label: "Je cherche un terrain",
+    sublabel: "Terrain à bâtir dans le Genevois français",
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </svg>
+    ),
+  },
 ];
 
-const zones = [
-  "Haute-Savoie (74)",
-  "Ain (01)",
-  "Genevois français",
+const ZONES = [
+  "Annemasse / Agglomération",
+  "Saint-Julien-en-Genevois",
+  "Pays de Gex (01)",
+  "Annecy et environs",
+  "Thonon / Chablais",
+  "Autre Haute-Savoie (74)",
+  "Autre Ain (01)",
   "Autre zone",
 ];
 
-const budgets = [
-  "Moins de 150 000 €",
-  "150 000 – 250 000 €",
-  "250 000 – 400 000 €",
-  "Plus de 400 000 €",
+const TERRAIN_OPTIONS = [
+  {
+    id: "Terrain acquis ou en cours d'acquisition",
+    label: "J'ai mon terrain",
+    sublabel: "Propriétaire ou acquisition en cours",
+  },
+  {
+    id: "Terrain en cours de recherche",
+    label: "Je cherche encore",
+    sublabel: "Voir les terrains disponibles sur le site →",
+  },
+  {
+    id: "Pas encore de terrain",
+    label: "Pas encore de terrain",
+    sublabel: "M&M CONSTRUCTION peut m'aider à en identifier un",
+  },
+];
+
+const SURFACES = [
+  "Moins de 80 m²",
+  "80 – 100 m²",
+  "100 – 120 m²",
+  "120 – 150 m²",
+  "150 – 180 m²",
+  "180 m² et plus",
   "À définir",
 ];
 
+const BUDGETS = [
+  "Moins de 250 000 €",
+  "250 000 – 350 000 €",
+  "350 000 – 500 000 €",
+  "500 000 – 700 000 €",
+  "Plus de 700 000 €",
+  "À définir / Je ne sais pas encore",
+];
+
+const DELAI_OPTIONS = [
+  {
+    id: "Moins de 6 mois",
+    label: "Moins de 6 mois",
+    sublabel: "Projet urgent, démarrage rapide souhaité",
+  },
+  {
+    id: "6 à 12 mois",
+    label: "6 à 12 mois",
+    sublabel: "Projet en cours de maturation",
+  },
+  {
+    id: "1 à 2 ans",
+    label: "1 à 2 ans",
+    sublabel: "Je prépare sans précipitation",
+  },
+  {
+    id: "Plus de 2 ans",
+    label: "Plus de 2 ans",
+    sublabel: "Je me renseigne pour l'avenir",
+  },
+];
+
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+
+function buildMessage(a: Answers): string {
+  return [
+    "CONFIGURATEUR M&M CONSTRUCTION — RÉSUMÉ DU PROJET",
+    "",
+    `Type de projet : ${a.typeProjet}`,
+    `Zone : ${a.zone}`,
+    `Situation terrain : ${a.terrainStatus}`,
+    `Surface souhaitée : ${a.surface}`,
+    `Budget global : ${a.budget}`,
+    `Délai envisagé : ${a.delai}`,
+    a.message ? `\nPrécisions complémentaires :\n${a.message}` : "",
+  ].filter(Boolean).join("\n");
+}
+
+// ─── OptionCard ───────────────────────────────────────────────────────────────
+
+function OptionCard({
+  selected,
+  onClick,
+  label,
+  sublabel,
+  icon,
+}: {
+  selected: boolean;
+  onClick: () => void;
+  label: string;
+  sublabel?: string;
+  icon?: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`relative w-full text-left p-4 border-2 transition-all duration-150 cursor-pointer group ${
+        selected
+          ? "border-[#BA7517] bg-[#FDF8F0]"
+          : "border-[#D9D4CC] bg-white hover:border-[#BA7517]/50 hover:bg-[#FEFCF8]"
+      }`}
+    >
+      {selected && (
+        <div className="absolute top-3 right-3 w-5 h-5 bg-[#BA7517] flex items-center justify-center flex-shrink-0">
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+            <path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+      )}
+      {icon && (
+        <div className={`mb-2.5 transition-colors ${selected ? "text-[#BA7517]" : "text-[#888780] group-hover:text-[#BA7517]"}`}>
+          {icon}
+        </div>
+      )}
+      <div className={`text-[15px] font-bold leading-tight pr-6 ${selected ? "text-[#BA7517]" : "text-[#2C2C2A]"}`}>
+        {label}
+      </div>
+      {sublabel && (
+        <div className="text-[12px] text-[#888780] mt-0.5 leading-snug pr-6">{sublabel}</div>
+      )}
+    </button>
+  );
+}
+
+// ─── Sidebar ─────────────────────────────────────────────────────────────────
+
+function Sidebar() {
+  return (
+    <div className="flex flex-col gap-5">
+      <div className="bg-white p-6 flex flex-col gap-4">
+        <p className="text-[11px] font-bold uppercase tracking-widest text-[#BA7517]">Ce qui se passe ensuite</p>
+        {[
+          { num: "01", titre: "Réponse sous 48h", detail: "Mahmoud analyse votre demande et revient avec un premier retour." },
+          { num: "02", titre: "Appel de 20 minutes", detail: "Échange pour clarifier le projet, le terrain, les délais et priorités." },
+          { num: "03", titre: "Étude de faisabilité", detail: "Analyse PLU, contraintes techniques, première fourchette budgétaire." },
+          { num: "04", titre: "Proposition MOE", detail: "Si la faisabilité est confirmée, une proposition de mission sur mesure." },
+        ].map((s) => (
+          <div key={s.num} className="flex gap-3">
+            <div className="text-[#BA7517] font-black text-[17px] w-7 flex-shrink-0">{s.num}</div>
+            <div>
+              <div className="text-[14px] font-bold text-[#2C2C2A]">{s.titre}</div>
+              <div className="text-[13px] text-[#888780] leading-[1.6] mt-0.5">{s.detail}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="bg-[#2C2C2A] p-6 flex flex-col gap-3">
+        <p className="text-[11px] font-bold uppercase tracking-widest text-[#BA7517]">Garanties</p>
+        {[
+          "Réponse garantie sous 48h ouvrées",
+          "Zéro engagement à ce stade",
+          "Données confidentielles, non revendues",
+          "Étude initiale entièrement gratuite",
+        ].map((g) => (
+          <div key={g} className="flex items-start gap-2 text-[14px] text-white/80">
+            <span className="text-[#BA7517] flex-shrink-0 mt-0.5">✓</span>
+            {g}
+          </div>
+        ))}
+      </div>
+
+      <div className="bg-white p-5 border-l-4 border-[#BA7517]">
+        <p className="text-[13px] font-bold text-[#2C2C2A] mb-1">Préférez-vous appeler ?</p>
+        <p className="text-[13px] text-[#888780] mb-3">Disponible lundi–vendredi, 8h–19h.</p>
+        <a href="tel:+33625590926" className="inline-block bg-[#BA7517] text-white text-[14px] font-bold px-4 py-2.5 no-underline hover:bg-[#9E6312] transition-colors">
+          Appeler directement
+        </a>
+      </div>
+    </div>
+  );
+}
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
+
 export default function DemandeEtudePage() {
   const router = useRouter();
+  const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [rgpd, setRgpd] = useState(false);
+  const [answers, setAnswers] = useState<Answers>({
+    typeProjet: "", zone: "", terrainStatus: "", surface: "",
+    budget: "", delai: "", prenom: "", nom: "", email: "",
+    telephone: "", message: "",
+  });
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function set<K extends keyof Answers>(key: K, value: string) {
+    setAnswers(prev => ({ ...prev, [key]: value }));
+  }
+
+  // Select an option and auto-advance after a brief visual feedback delay
+  function pick<K extends keyof Answers>(key: K, value: string) {
+    setAnswers(prev => ({ ...prev, [key]: value }));
+    setTimeout(() => setStep(s => Math.min(s + 1, TOTAL_STEPS)), 280);
+  }
+
+  function prev() {
+    setError("");
+    setStep(s => Math.max(s - 1, 1));
+  }
+
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    if (!answers.email || !answers.prenom) return;
     setLoading(true);
     setError("");
-
-    const fd = new FormData(e.currentTarget);
-    const data = Object.fromEntries(fd.entries());
-
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          nom: answers.nom || answers.prenom,
+          prenom: answers.prenom,
+          email: answers.email,
+          telephone: answers.telephone,
+          typeProjet: answers.typeProjet,
+          zone: answers.zone,
+          budget: answers.budget,
+          message: buildMessage(answers),
+        }),
       });
-
       if (!res.ok) throw new Error();
       router.push("/demande-etude/merci");
     } catch {
-      setError("Une erreur est survenue. Merci de réessayer ou de nous contacter directement.");
+      setError("Une erreur est survenue. Réessayez ou appelez-nous directement.");
       setLoading(false);
     }
   }
 
+  const progress = step === 1 ? 0 : ((step - 1) / (TOTAL_STEPS - 1)) * 100;
+
+  const stepMeta: Record<number, { title: string; sub: string }> = {
+    1: { title: "Quel est votre projet ?", sub: "Sélectionnez le type de travaux envisagés" },
+    2: { title: "Dans quelle zone ?", sub: "Sélectionnez votre secteur géographique" },
+    3: { title: "Votre situation foncière", sub: "Où en êtes-vous avec le terrain ?" },
+    4: { title: "Surface souhaitée", sub: "Surface habitable visée pour le projet" },
+    5: { title: "Budget global estimé", sub: "Travaux, honoraires MOE et taxes compris" },
+    6: { title: "Délai du projet", sub: "Quand souhaitez-vous démarrer ?" },
+    7: { title: "Vos coordonnées", sub: "Mahmoud vous recontacte sous 48h" },
+  };
+
   return (
     <main className="bg-[#F2EDE6] min-h-screen">
-      {/* Header simple */}
-      <div className="bg-[#2C2C2A] py-12 px-5">
+
+      {/* Header */}
+      <div className="bg-[#2C2C2A] pt-10 pb-0 px-5">
         <div className="max-w-[1100px] mx-auto">
           <Link href="/" className="text-white/50 text-[13px] no-underline hover:text-white transition-colors">
             ← Retour à l&apos;accueil
           </Link>
-          <h1 className="text-white text-[32px] md:text-[40px] font-black mt-4 mb-2 leading-tight">
-            Demande d&apos;étude gratuite
+          <h1 className="text-white text-[28px] md:text-[38px] font-black mt-4 mb-1 leading-tight">
+            Configurez votre projet
           </h1>
-          <p className="text-white/60 text-[17px] leading-[1.6]">
-            Décrivez votre projet. Mahmoud vous recontacte sous 48h pour un premier échange sans engagement.
+          <p className="text-white/60 text-[14px] mb-5">
+            {TOTAL_STEPS} questions · Gratuit · Sans engagement · Réponse sous 48h
           </p>
-        </div>
-      </div>
 
-      {/* Layout 2 colonnes */}
-      <div className="max-w-[1100px] mx-auto px-5 py-12 grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-10 items-start">
-
-      {/* Colonne réassurance (droite sur desktop, en bas sur mobile) */}
-      <aside className="order-2 lg:order-2 flex flex-col gap-5">
-
-        {/* Engagements */}
-        <div className="bg-white p-6 flex flex-col gap-4">
-          <p className="text-[11px] font-bold uppercase tracking-widest text-[#BA7517]">Ce qui se passe ensuite</p>
-          {[
-            { num: "01", titre: "Réponse sous 48h", detail: "Mahmoud analyse votre demande et revient avec un premier retour par email ou téléphone." },
-            { num: "02", titre: "Appel de 20 minutes", detail: "Un échange pour clarifier votre projet, votre terrain, vos délais et vos priorités." },
-            { num: "03", titre: "Étude de faisabilité", detail: "Analyse PLU, contraintes techniques locales, première fourchette budgétaire réaliste." },
-            { num: "04", titre: "Proposition MOE", detail: "Si la faisabilité est confirmée, une proposition de mission maîtrise d'œuvre sur mesure." },
-          ].map((s) => (
-            <div key={s.num} className="flex gap-3">
-              <div className="text-[#BA7517] font-black text-[18px] w-7 flex-shrink-0">{s.num}</div>
-              <div>
-                <div className="text-[14px] font-bold text-[#2C2C2A]">{s.titre}</div>
-                <div className="text-[13px] text-[#888780] leading-[1.6] mt-0.5">{s.detail}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Garanties */}
-        <div className="bg-[#2C2C2A] p-6 flex flex-col gap-3">
-          <p className="text-[11px] font-bold uppercase tracking-widest text-[#BA7517]">Garanties</p>
-          {[
-            "Réponse garantie sous 48h ouvrées",
-            "Zéro engagement à ce stade",
-            "Données confidentielles, non revendues",
-            "Étude initiale entièrement gratuite",
-          ].map((g) => (
-            <div key={g} className="flex items-start gap-2 text-[14px] text-white/80">
-              <span className="text-[#BA7517] flex-shrink-0 mt-0.5">✓</span>
-              {g}
-            </div>
-          ))}
-        </div>
-
-        {/* Contact direct */}
-        <div className="bg-white p-5 border-l-4 border-[#BA7517]">
-          <p className="text-[13px] font-bold text-[#2C2C2A] mb-1">Préférez-vous appeler ?</p>
-          <p className="text-[13px] text-[#888780] mb-3">Mahmoud est disponible du lundi au vendredi, 8h–19h.</p>
-          <a href="tel:+33625590926" className="inline-block bg-[#BA7517] text-white text-[14px] font-bold px-4 py-2.5 no-underline hover:bg-[#9E6312] transition-colors">
-            Appeler directement
-          </a>
-        </div>
-
-        {/* Zones couvertes */}
-        <div className="bg-white p-5">
-          <p className="text-[11px] font-bold uppercase tracking-widest text-[#BA7517] mb-3">Zones couvertes</p>
-          <div className="flex flex-wrap gap-1.5">
-            {["Haute-Savoie (74)", "Ain (01)", "Annemasse", "Saint-Julien-en-Genevois", "Gex", "Pays de Gex", "Genevois français"].map((z) => (
-              <span key={z} className="bg-[#F2EDE6] text-[#2C2C2A] text-[12px] px-2 py-0.5 border border-[#D9D4CC]">{z}</span>
-            ))}
-          </div>
-        </div>
-
-      </aside>
-
-      {/* Form (gauche) */}
-      <div className="order-1 lg:order-1">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-
-          {/* Identité */}
-          <div className="bg-white p-6 flex flex-col gap-4">
-            <h2 className="text-[14px] font-bold uppercase tracking-widest text-[#BA7517] mb-1">Vos coordonnées</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="flex flex-col gap-1">
-                <label className="text-[13px] font-bold text-[#2C2C2A]">Prénom <span className="text-[#BA7517]">*</span></label>
-                <input
-                  name="prenom"
-                  type="text"
-                  required
-                  placeholder="Jean"
-                  className="border border-[#D9D4CC] px-4 py-3 text-[15px] text-[#2C2C2A] bg-white focus:outline-none focus:border-[#BA7517] transition-colors"
-                />
-              </div>
-              <div className="flex flex-col gap-1">
-                <label className="text-[13px] font-bold text-[#2C2C2A]">Nom <span className="text-[#BA7517]">*</span></label>
-                <input
-                  name="nom"
-                  type="text"
-                  required
-                  placeholder="Dupont"
-                  className="border border-[#D9D4CC] px-4 py-3 text-[15px] text-[#2C2C2A] bg-white focus:outline-none focus:border-[#BA7517] transition-colors"
-                />
-              </div>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="flex flex-col gap-1">
-                <label className="text-[13px] font-bold text-[#2C2C2A]">Email <span className="text-[#BA7517]">*</span></label>
-                <input
-                  name="email"
-                  type="email"
-                  required
-                  placeholder="jean.dupont@email.com"
-                  className="border border-[#D9D4CC] px-4 py-3 text-[15px] text-[#2C2C2A] bg-white focus:outline-none focus:border-[#BA7517] transition-colors"
-                />
-              </div>
-              <div className="flex flex-col gap-1">
-                <label className="text-[13px] font-bold text-[#2C2C2A]">Téléphone</label>
-                <input
-                  name="telephone"
-                  type="tel"
-                  placeholder="06 00 00 00 00"
-                  className="border border-[#D9D4CC] px-4 py-3 text-[15px] text-[#2C2C2A] bg-white focus:outline-none focus:border-[#BA7517] transition-colors"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Projet */}
-          <div className="bg-white p-6 flex flex-col gap-4">
-            <h2 className="text-[14px] font-bold uppercase tracking-widest text-[#BA7517] mb-1">Votre projet</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="flex flex-col gap-1">
-                <label className="text-[13px] font-bold text-[#2C2C2A]">Type de projet</label>
-                <select
-                  name="typeProjet"
-                  className="border border-[#D9D4CC] px-4 py-3 text-[15px] text-[#2C2C2A] bg-white focus:outline-none focus:border-[#BA7517] transition-colors appearance-none cursor-pointer"
-                >
-                  <option value="">— Sélectionner —</option>
-                  {typesProjet.map((t) => <option key={t} value={t}>{t}</option>)}
-                </select>
-              </div>
-              <div className="flex flex-col gap-1">
-                <label className="text-[13px] font-bold text-[#2C2C2A]">Zone d&apos;intervention</label>
-                <select
-                  name="zone"
-                  className="border border-[#D9D4CC] px-4 py-3 text-[15px] text-[#2C2C2A] bg-white focus:outline-none focus:border-[#BA7517] transition-colors appearance-none cursor-pointer"
-                >
-                  <option value="">— Sélectionner —</option>
-                  {zones.map((z) => <option key={z} value={z}>{z}</option>)}
-                </select>
-              </div>
-            </div>
-            <div className="flex flex-col gap-1">
-              <label className="text-[13px] font-bold text-[#2C2C2A]">Budget approximatif</label>
-              <select
-                name="budget"
-                className="border border-[#D9D4CC] px-4 py-3 text-[15px] text-[#2C2C2A] bg-white focus:outline-none focus:border-[#BA7517] transition-colors appearance-none cursor-pointer"
-              >
-                <option value="">— Sélectionner —</option>
-                {budgets.map((b) => <option key={b} value={b}>{b}</option>)}
-              </select>
-            </div>
-            <div className="flex flex-col gap-1">
-              <label className="text-[13px] font-bold text-[#2C2C2A]">Décrivez votre projet <span className="text-[#BA7517]">*</span></label>
-              <textarea
-                name="message"
-                required
-                rows={5}
-                placeholder="Surface souhaitée, terrain disponible, délais envisagés, questions spécifiques…"
-                className="border border-[#D9D4CC] px-4 py-3 text-[15px] text-[#2C2C2A] bg-white focus:outline-none focus:border-[#BA7517] transition-colors resize-y"
+          {/* Progress bar */}
+          <div className="flex items-center gap-3 pb-4">
+            <div className="flex-1 h-1 bg-white/10 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-[#BA7517] rounded-full transition-all duration-500"
+                style={{ width: `${progress}%` }}
               />
             </div>
-          </div>
-
-          {/* Error */}
-          {error && (
-            <p className="text-red-600 text-[14px] bg-red-50 border border-red-200 px-4 py-3">{error}</p>
-          )}
-
-          {/* Consentement RGPD */}
-          <label className="flex items-start gap-3 cursor-pointer">
-            <input
-              type="checkbox"
-              name="rgpd"
-              required
-              className="mt-0.5 flex-shrink-0 w-4 h-4 accent-[#BA7517] cursor-pointer"
-            />
-            <span className="text-[13px] text-[#888780] leading-[1.6]">
-              J&apos;accepte la{" "}
-              <Link href="/vie-privee/" className="text-[#BA7517] no-underline hover:underline" target="_blank">politique de confidentialité</Link>
-              {" "}et la{" "}
-              <Link href="/politique-cookies/" className="text-[#BA7517] no-underline hover:underline" target="_blank">politique de cookies</Link>
-              . Mes données sont utilisées uniquement pour traiter ma demande d&apos;étude. *
+            <span className="text-[12px] text-white/40 whitespace-nowrap flex-shrink-0">
+              {step} / {TOTAL_STEPS}
             </span>
-          </label>
-
-          {/* Submit */}
-          <button
-            type="submit"
-            disabled={loading}
-            className="bg-[#BA7517] text-white text-[17px] font-bold px-8 py-4 hover:bg-[#9E6312] transition-colors disabled:opacity-60 disabled:cursor-not-allowed self-start"
-          >
-            {loading ? "Envoi en cours…" : "Envoyer ma demande d'étude →"}
-          </button>
-
-          <p className="text-[13px] text-[#888780]">
-            Réponse garantie sous 48h · Sans engagement · Vos données restent confidentielles
-          </p>
-        </form>
+          </div>
+        </div>
       </div>
 
+      {/* Main layout */}
+      <div className="max-w-[1100px] mx-auto px-5 py-10 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-10 items-start">
+
+        {/* Configurator */}
+        <div className="order-1">
+
+          {/* Step header */}
+          <div className="mb-6">
+            <div className="text-[11px] text-[#BA7517] font-bold uppercase tracking-widest mb-1">
+              Étape {step} sur {TOTAL_STEPS}
+            </div>
+            <h2 className="text-[22px] font-black text-[#2C2C2A] mb-1">{stepMeta[step].title}</h2>
+            <p className="text-[13px] text-[#888780]">{stepMeta[step].sub}</p>
+          </div>
+
+          {/* Step 1 — Type de projet */}
+          {step === 1 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {TYPE_OPTIONS.map((opt) => (
+                <OptionCard
+                  key={opt.id}
+                  selected={answers.typeProjet === opt.id}
+                  onClick={() => pick("typeProjet", opt.id)}
+                  label={opt.label}
+                  sublabel={opt.sublabel}
+                  icon={opt.icon}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Step 2 — Zone */}
+          {step === 2 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {ZONES.map((z) => (
+                <OptionCard
+                  key={z}
+                  selected={answers.zone === z}
+                  onClick={() => pick("zone", z)}
+                  label={z}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Step 3 — Terrain */}
+          {step === 3 && (
+            <div className="flex flex-col gap-3">
+              {TERRAIN_OPTIONS.map((opt) => (
+                <OptionCard
+                  key={opt.id}
+                  selected={answers.terrainStatus === opt.id}
+                  onClick={() => pick("terrainStatus", opt.id)}
+                  label={opt.label}
+                  sublabel={opt.sublabel}
+                />
+              ))}
+              {answers.terrainStatus === "Terrain en cours de recherche" && (
+                <div className="bg-[#BA7517]/10 border border-[#BA7517]/30 px-4 py-3 flex items-center justify-between">
+                  <p className="text-[13px] text-[#2C2C2A]">
+                    Des terrains sont disponibles dans le Genevois français.
+                  </p>
+                  <Link href="/annonces/" className="text-[13px] font-bold text-[#BA7517] no-underline hover:underline whitespace-nowrap ml-4">
+                    Voir les annonces →
+                  </Link>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Step 4 — Surface */}
+          {step === 4 && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {SURFACES.map((s) => (
+                <OptionCard
+                  key={s}
+                  selected={answers.surface === s}
+                  onClick={() => pick("surface", s)}
+                  label={s}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Step 5 — Budget */}
+          {step === 5 && (
+            <div className="flex flex-col gap-3">
+              {BUDGETS.map((b) => (
+                <OptionCard
+                  key={b}
+                  selected={answers.budget === b}
+                  onClick={() => pick("budget", b)}
+                  label={b}
+                />
+              ))}
+              <p className="text-[12px] text-[#888780] mt-1 leading-relaxed">
+                Budget indicatif : travaux + honoraires MOE + taxes. Une estimation précise sera fournie lors de l&apos;étude de faisabilité.
+              </p>
+            </div>
+          )}
+
+          {/* Step 6 — Délai */}
+          {step === 6 && (
+            <div className="flex flex-col gap-3">
+              {DELAI_OPTIONS.map((opt) => (
+                <OptionCard
+                  key={opt.id}
+                  selected={answers.delai === opt.id}
+                  onClick={() => pick("delai", opt.id)}
+                  label={opt.label}
+                  sublabel={opt.sublabel}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Step 7 — Contact */}
+          {step === 7 && (
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+
+              {/* Récapitulatif */}
+              <div className="bg-white border-l-4 border-[#BA7517] p-4">
+                <p className="text-[11px] font-bold uppercase tracking-widest text-[#BA7517] mb-3">Votre projet en résumé</p>
+                <div className="grid grid-cols-2 gap-x-6 gap-y-2">
+                  {[
+                    ["Projet", answers.typeProjet],
+                    ["Zone", answers.zone],
+                    ["Terrain", answers.terrainStatus],
+                    ["Surface", answers.surface],
+                    ["Budget", answers.budget],
+                    ["Délai", answers.delai],
+                  ].map(([label, value]) =>
+                    value ? (
+                      <div key={label}>
+                        <div className="text-[10px] text-[#888780] uppercase tracking-widest">{label}</div>
+                        <div className="text-[13px] font-bold text-[#2C2C2A] leading-tight mt-0.5">{value}</div>
+                      </div>
+                    ) : null
+                  )}
+                </div>
+              </div>
+
+              {/* Champs */}
+              <div className="bg-white p-5 flex flex-col gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[11px] font-bold uppercase tracking-widest text-[#888780]">Prénom <span className="text-[#BA7517]">*</span></label>
+                    <input
+                      type="text"
+                      required
+                      value={answers.prenom}
+                      onChange={(e) => set("prenom", e.target.value)}
+                      placeholder="Votre prénom"
+                      className="border border-[#D9D4CC] px-4 py-3 text-[15px] text-[#2C2C2A] bg-white focus:outline-none focus:border-[#BA7517] transition-colors"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[11px] font-bold uppercase tracking-widest text-[#888780]">Nom</label>
+                    <input
+                      type="text"
+                      value={answers.nom}
+                      onChange={(e) => set("nom", e.target.value)}
+                      placeholder="Votre nom"
+                      className="border border-[#D9D4CC] px-4 py-3 text-[15px] text-[#2C2C2A] bg-white focus:outline-none focus:border-[#BA7517] transition-colors"
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[11px] font-bold uppercase tracking-widest text-[#888780]">Email <span className="text-[#BA7517]">*</span></label>
+                    <input
+                      type="email"
+                      required
+                      value={answers.email}
+                      onChange={(e) => set("email", e.target.value)}
+                      placeholder="votre@email.com"
+                      className="border border-[#D9D4CC] px-4 py-3 text-[15px] text-[#2C2C2A] bg-white focus:outline-none focus:border-[#BA7517] transition-colors"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[11px] font-bold uppercase tracking-widest text-[#888780]">
+                      Téléphone <span className="font-normal normal-case tracking-normal">(optionnel)</span>
+                    </label>
+                    <input
+                      type="tel"
+                      value={answers.telephone}
+                      onChange={(e) => set("telephone", e.target.value)}
+                      placeholder="06 xx xx xx xx"
+                      className="border border-[#D9D4CC] px-4 py-3 text-[15px] text-[#2C2C2A] bg-white focus:outline-none focus:border-[#BA7517] transition-colors"
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[11px] font-bold uppercase tracking-widest text-[#888780]">
+                    Précisions <span className="font-normal normal-case tracking-normal">(optionnel)</span>
+                  </label>
+                  <textarea
+                    value={answers.message}
+                    onChange={(e) => set("message", e.target.value)}
+                    rows={3}
+                    placeholder="Informations complémentaires, contraintes spécifiques, questions…"
+                    className="border border-[#D9D4CC] px-4 py-3 text-[15px] text-[#2C2C2A] bg-white focus:outline-none focus:border-[#BA7517] transition-colors resize-y"
+                  />
+                </div>
+              </div>
+
+              {/* RGPD */}
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  required
+                  checked={rgpd}
+                  onChange={(e) => setRgpd(e.target.checked)}
+                  className="mt-0.5 flex-shrink-0 w-4 h-4 accent-[#BA7517] cursor-pointer"
+                />
+                <span className="text-[13px] text-[#888780] leading-[1.6]">
+                  J&apos;accepte la{" "}
+                  <Link href="/vie-privee/" className="text-[#BA7517] no-underline hover:underline" target="_blank">
+                    politique de confidentialité
+                  </Link>
+                  . Mes données sont utilisées uniquement pour traiter ma demande. *
+                </span>
+              </label>
+
+              {error && (
+                <p className="text-red-600 text-[14px] bg-red-50 border border-red-200 px-4 py-3">{error}</p>
+              )}
+
+              <button
+                type="submit"
+                disabled={loading || !rgpd}
+                className="bg-[#BA7517] text-white text-[16px] font-bold px-8 py-4 hover:bg-[#9E6312] transition-colors disabled:opacity-50 disabled:cursor-not-allowed self-start"
+              >
+                {loading ? "Envoi en cours…" : "Envoyer ma demande d'étude →"}
+              </button>
+
+              <p className="text-[12px] text-[#888780]">
+                Réponse garantie sous 48h · Sans engagement · Données confidentielles
+              </p>
+            </form>
+          )}
+
+          {/* Navigation */}
+          <div className="flex items-center mt-6">
+            {step > 1 && (
+              <button
+                type="button"
+                onClick={prev}
+                className="text-[14px] text-[#888780] hover:text-[#2C2C2A] transition-colors cursor-pointer flex items-center gap-1"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M10 12L6 8l4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                Retour
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Sidebar — visible desktop always, mobile only on last step */}
+        <aside className={`order-2 ${step < TOTAL_STEPS ? "hidden lg:block" : "block"}`}>
+          <Sidebar />
+        </aside>
       </div>
     </main>
   );
