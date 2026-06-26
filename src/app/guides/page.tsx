@@ -118,9 +118,9 @@ export default function GuidesPage() {
       <div className="bg-[#2C2C2A] py-16 px-5">
         <div className="max-w-[900px] mx-auto">
           <Link href="/" className="text-white/50 text-[13px] no-underline hover:text-white transition-colors">← Accueil</Link>
-          <h1 className="text-white text-[36px] md:text-[48px] font-black mt-4 mb-3">Guides techniques bois</h1>
+          <h1 className="text-white text-[36px] md:text-[48px] font-black mt-4 mb-3">Guides techniques</h1>
           <p className="text-white/60 text-[17px] leading-[1.6] max-w-[600px]">
-            Rédigés par Mahmoud Ben Ahmed, maître d&apos;œuvre spécialisé maison ossature bois en Genevois français depuis 20 ans.
+            Rédigés par Mahmoud Ben Ahmed, maître d&apos;œuvre spécialisé maison ossature bois en Genevois français.
           </p>
         </div>
       </div>
