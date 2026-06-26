@@ -20,10 +20,7 @@ const jsonLd = {
   areaServed: { "@type": "City", name: "Gex", containedInPlace: { "@type": "AdministrativeArea", name: "Ain" } },
 };
 
-const jsonLdFaq = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
+const faqItems = [
     {
       "@type": "Question",
       name: "Peut-on construire une maison ossature bois dans le Pays de Gex ?",
@@ -48,8 +45,7 @@ const jsonLdFaq = {
         text: "Le Pays de Gex est l'une des zones les plus chères de France hors Île-de-France pour le foncier (500 à 1 000 €/m² selon les communes). Le coût de construction d'une maison ossature bois se situe entre 2 000 et 2 800 € HT/m². À budget total, la maison sur mesure en MOE est souvent plus rentable qu'un CCMI catalogue sur cette zone.",
       },
     },
-  ],
-};
+];
 
 const jsonLdBreadcrumb = {
   "@context": "https://schema.org",
@@ -65,7 +61,6 @@ export default function MaisonBoisGexPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }} />
       <main>
 
@@ -145,7 +140,7 @@ export default function MaisonBoisGexPage() {
             <p className="text-[11px] font-bold uppercase tracking-widest text-[#BA7517] mb-3">Questions fréquentes</p>
             <h2 className="text-[22px] font-black text-[#2C2C2A] mb-6">Maison bois dans le Pays de Gex : vos questions</h2>
             <div className="flex flex-col gap-0 border border-[#D9D4CC]">
-              {jsonLdFaq.mainEntity.map((item, i) => (
+              {faqItems.map((item, i) => (
                 <details key={i} className="border-b border-[#D9D4CC] last:border-0 group">
                   <summary className="flex items-center justify-between px-5 py-4 cursor-pointer list-none text-[15px] font-medium text-[#2C2C2A] hover:text-[#BA7517] transition-colors">
                     {item.name}

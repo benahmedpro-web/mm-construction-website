@@ -24,10 +24,7 @@ const jsonLdArticle = {
   inLanguage: "fr-FR",
 };
 
-const jsonLdFaq = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
+const faqItems = [
     {
       "@type": "Question",
       name: "Quel est le prix moyen d'une maison ossature bois en Haute-Savoie ?",
@@ -68,8 +65,7 @@ const jsonLdFaq = {
         text: "Les principaux facteurs de variation sont : le terrain en pente (fondations spéciales : +15 000 à 40 000 €), le niveau de prestation (standard, intermédiaire, haut de gamme), le type de bardage (bois naturel, composite, enduit), la performance thermique visée (RT standard vs passif), les menuiseries (PVC, aluminium, bois-aluminium), la superficie et la complexité architecturale.",
       },
     },
-  ],
-};
+];
 
 const jsonLdBreadcrumb = {
   "@context": "https://schema.org",
@@ -104,7 +100,6 @@ export default function GuidePrixMaisonBoisPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdArticle) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }} />
       <main>
 
@@ -236,7 +231,7 @@ export default function GuidePrixMaisonBoisPage() {
             <p className="text-[11px] font-bold uppercase tracking-widest text-[#BA7517] mb-3">Questions fréquentes</p>
             <h2 className="text-[22px] font-bold text-[#2C2C2A] mb-6">Prix maison ossature bois Haute-Savoie</h2>
             <div className="flex flex-col gap-0 border border-[#D9D4CC] bg-white">
-              {jsonLdFaq.mainEntity.map((item, i) => (
+              {faqItems.map((item, i) => (
                 <details key={i} className="border-b border-[#D9D4CC] last:border-0 group">
                   <summary className="flex items-center justify-between px-5 py-4 cursor-pointer list-none text-[15px] font-medium text-[#2C2C2A] hover:text-[#BA7517] transition-colors">
                     {item.name}

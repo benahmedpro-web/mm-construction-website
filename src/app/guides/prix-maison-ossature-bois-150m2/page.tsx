@@ -24,10 +24,7 @@ const jsonLdArticle = {
   inLanguage: "fr-FR",
 };
 
-const jsonLdFaq = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
+const faqItems = [
     {
       "@type": "Question",
       name: "Quel budget pour une maison ossature bois de 150m² en Haute-Savoie ?",
@@ -60,8 +57,7 @@ const jsonLdFaq = {
         text: "Le foncier est le poste le plus variable et le plus impactant. En 2025, comptez : 150 000 à 300 000 € pour un terrain de 500 à 800m² dans le Genevois (secteur Annemasse, Saint-Julien) ; 200 000 à 500 000 € autour d'Annecy (lac et communes proches) ; 120 000 à 250 000 € dans le Chablais ou les vallées alpines moins tendues. Le budget total projet pour un 150m² s'étend donc de 430 000 € à plus de 900 000 € terrain compris selon la localisation.",
       },
     },
-  ],
-};
+];
 
 const jsonLdBreadcrumb = {
   "@context": "https://schema.org",
@@ -93,7 +89,6 @@ export default function PrixMaison150m2Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdArticle) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }} />
       <main>
 
@@ -220,7 +215,7 @@ export default function PrixMaison150m2Page() {
             <p className="text-[11px] font-bold uppercase tracking-widest text-[#BA7517] mb-3">Questions fréquentes</p>
             <h2 className="text-[24px] font-bold text-[#2C2C2A] mb-8">Budget 150m² en Haute-Savoie : vos questions</h2>
             <div className="flex flex-col gap-0 border border-[#D9D4CC] bg-white">
-              {jsonLdFaq.mainEntity.map((item, i) => (
+              {faqItems.map((item, i) => (
                 <details key={i} className="border-b border-[#D9D4CC] last:border-0 group">
                   <summary className="flex items-center justify-between px-5 py-4 cursor-pointer list-none text-[15px] font-medium text-[#2C2C2A] hover:text-[#BA7517] transition-colors">
                     {item.name}

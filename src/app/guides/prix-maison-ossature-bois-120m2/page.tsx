@@ -24,10 +24,7 @@ const jsonLdArticle = {
   inLanguage: "fr-FR",
 };
 
-const jsonLdFaq = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
+const faqItems = [
     {
       "@type": "Question",
       name: "Quel budget prévoir pour une maison ossature bois de 120m² en Haute-Savoie ?",
@@ -60,8 +57,7 @@ const jsonLdFaq = {
         text: "Oui, et c'est même l'un des avantages de la construction bois. L'ossature bois se prête à l'extension par ajout de modules ou d'une aile supplémentaire. Il faut cependant anticiper cela dès la conception initiale : fondations surdimensionnées, mur pignon accessible, réseaux préparés. M&M CONSTRUCTION intègre ces possibilités d'évolution dans les études de faisabilité.",
       },
     },
-  ],
-};
+];
 
 const jsonLdBreadcrumb = {
   "@context": "https://schema.org",
@@ -93,7 +89,6 @@ export default function PrixMaison120m2Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdArticle) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }} />
       <main>
 
@@ -235,7 +230,7 @@ export default function PrixMaison120m2Page() {
             <p className="text-[11px] font-bold uppercase tracking-widest text-[#BA7517] mb-3">Questions fréquentes</p>
             <h2 className="text-[24px] font-bold text-[#2C2C2A] mb-8">Budget 120m² en Haute-Savoie : vos questions</h2>
             <div className="flex flex-col gap-0 border border-[#D9D4CC] bg-white">
-              {jsonLdFaq.mainEntity.map((item, i) => (
+              {faqItems.map((item, i) => (
                 <details key={i} className="border-b border-[#D9D4CC] last:border-0 group">
                   <summary className="flex items-center justify-between px-5 py-4 cursor-pointer list-none text-[15px] font-medium text-[#2C2C2A] hover:text-[#BA7517] transition-colors">
                     {item.name}

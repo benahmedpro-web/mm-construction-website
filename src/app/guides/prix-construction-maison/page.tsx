@@ -24,10 +24,7 @@ const jsonLdArticle = {
   inLanguage: "fr-FR",
 };
 
-const jsonLdFaq = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
+const faqItems = [
     {
       "@type": "Question",
       name: "Quel est le prix moyen d'une construction de maison en 2026 ?",
@@ -60,8 +57,7 @@ const jsonLdFaq = {
         text: "Trois leviers principaux : (1) la maîtrise d'œuvre plutôt que le CCMI, qui permet une mise en concurrence des artisans et une transparence sur chaque poste (économies de 10 à 20 % sur les travaux) ; (2) le choix de l'ossature bois, qui réduit les délais de chantier et les coûts de main-d'œuvre par rapport au maçonné ; (3) la définition précise du programme en amont, car les modifications en cours de chantier sont le principal facteur de dépassement.",
       },
     },
-  ],
-};
+];
 
 const jsonLdBreadcrumb = {
   "@context": "https://schema.org",
@@ -134,7 +130,6 @@ export default function GuidePrixConstructionMaisonPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdArticle) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }} />
       <main>
 
@@ -311,7 +306,7 @@ export default function GuidePrixConstructionMaisonPage() {
             <p className="text-[11px] font-bold uppercase tracking-widest text-[#BA7517] mb-3">Questions fréquentes</p>
             <h2 className="text-[22px] font-bold text-[#2C2C2A] mb-6">Prix construction maison 2026</h2>
             <div className="flex flex-col gap-0 border border-[#D9D4CC]">
-              {jsonLdFaq.mainEntity.map((item, i) => (
+              {faqItems.map((item, i) => (
                 <details key={i} className="border-b border-[#D9D4CC] last:border-0 group">
                   <summary className="flex items-center justify-between px-5 py-4 cursor-pointer list-none text-[15px] font-medium text-[#2C2C2A] hover:text-[#BA7517] transition-colors">
                     {item.name}

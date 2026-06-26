@@ -20,10 +20,7 @@ const jsonLd = {
   areaServed: { "@type": "City", name: "Thonon-les-Bains", containedInPlace: { "@type": "AdministrativeArea", name: "Haute-Savoie" } },
 };
 
-const jsonLdFaq = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
+const faqItems = [
     {
       "@type": "Question",
       name: "L'ossature bois est-elle adaptée au Chablais et aux bords du Léman ?",
@@ -56,8 +53,7 @@ const jsonLdFaq = {
         text: "Oui. M&M CONSTRUCTION intervient sur tout le Chablais : Thonon-les-Bains, Evian-les-Bains, Douvaine, Publier, Sciez, Lugrin, Saint-Gingolph, Abondance, Morzine, ainsi que les vallées du Brevon et de la Dranse. Nous couvrons l'ensemble de la Haute-Savoie et le Pays de Gex.",
       },
     },
-  ],
-};
+];
 
 const jsonLdBreadcrumb = {
   "@context": "https://schema.org",
@@ -73,7 +69,6 @@ export default function MaisonBoisThononPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }} />
       <main>
 
@@ -157,7 +152,7 @@ export default function MaisonBoisThononPage() {
             <p className="text-[11px] font-bold uppercase tracking-widest text-[#BA7517] mb-3">Questions fréquentes</p>
             <h2 className="text-[22px] font-black text-[#2C2C2A] mb-6">Maison bois dans le Chablais : vos questions</h2>
             <div className="flex flex-col gap-0 border border-[#D9D4CC]">
-              {jsonLdFaq.mainEntity.map((item, i) => (
+              {faqItems.map((item, i) => (
                 <details key={i} className="border-b border-[#D9D4CC] last:border-0 group">
                   <summary className="flex items-center justify-between px-5 py-4 cursor-pointer list-none text-[15px] font-medium text-[#2C2C2A] hover:text-[#BA7517] transition-colors">
                     {item.name}

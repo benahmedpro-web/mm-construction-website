@@ -24,10 +24,7 @@ const jsonLdArticle = {
   inLanguage: "fr-FR",
 };
 
-const jsonLdFaq = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
+const faqItems = [
     {
       "@type": "Question",
       name: "Le CCMI est-il moins cher que la maîtrise d'œuvre ?",
@@ -68,8 +65,7 @@ const jsonLdFaq = {
         text: "Les honoraires d'un maître d'œuvre représentent généralement 8 à 12 % du coût total des travaux HT. Pour une maison ossature bois de 200 000 € HT de travaux, cela représente 16 000 à 24 000 €. Ces honoraires sont transparents et négociés avant le démarrage du projet.",
       },
     },
-  ],
-};
+];
 
 const jsonLdBreadcrumb = {
   "@context": "https://schema.org",
@@ -85,7 +81,6 @@ export default function GuideMoeVsCcmiPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdArticle) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }} />
       <main>
 
@@ -203,7 +198,7 @@ export default function GuideMoeVsCcmiPage() {
             <p className="text-[11px] font-bold uppercase tracking-widest text-[#BA7517] mb-3">Questions fréquentes</p>
             <h2 className="text-[24px] font-bold text-[#2C2C2A] mb-8">CCMI vs MOE : vos questions</h2>
             <div className="flex flex-col gap-0 border border-[#D9D4CC] bg-white">
-              {jsonLdFaq.mainEntity.map((item, i) => (
+              {faqItems.map((item, i) => (
                 <details key={i} className="border-b border-[#D9D4CC] last:border-0 group">
                   <summary className="flex items-center justify-between px-5 py-4 cursor-pointer list-none text-[15px] font-medium text-[#2C2C2A] hover:text-[#BA7517] transition-colors">
                     {item.name}

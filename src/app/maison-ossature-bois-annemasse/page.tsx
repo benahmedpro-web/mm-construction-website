@@ -20,10 +20,7 @@ const jsonLd = {
   areaServed: { "@type": "City", name: "Annemasse", containedInPlace: { "@type": "AdministrativeArea", name: "Haute-Savoie" } },
 };
 
-const jsonLdFaq = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
+const faqItems = [
     {
       "@type": "Question",
       name: "Peut-on construire une maison ossature bois à Annemasse ?",
@@ -48,8 +45,7 @@ const jsonLdFaq = {
         text: "Dans l'agglomération d'Annemasse, le coût de construction d'une maison ossature bois varie entre 1 900 et 2 700 € HT/m² selon les prestations. Le prix foncier dans le Genevois est élevé (300 à 700 €/m² selon les quartiers). Une étude gratuite permet d'obtenir une estimation précise pour votre terrain.",
       },
     },
-  ],
-};
+];
 
 const jsonLdBreadcrumb = {
   "@context": "https://schema.org",
@@ -65,7 +61,6 @@ export default function MaisonBoisAnnemassePage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }} />
       <main>
 
@@ -145,7 +140,7 @@ export default function MaisonBoisAnnemassePage() {
             <p className="text-[11px] font-bold uppercase tracking-widest text-[#BA7517] mb-3">Questions fréquentes</p>
             <h2 className="text-[22px] font-black text-[#2C2C2A] mb-6">Maison bois à Annemasse : vos questions</h2>
             <div className="flex flex-col gap-0 border border-[#D9D4CC]">
-              {jsonLdFaq.mainEntity.map((item, i) => (
+              {faqItems.map((item, i) => (
                 <details key={i} className="border-b border-[#D9D4CC] last:border-0 group">
                   <summary className="flex items-center justify-between px-5 py-4 cursor-pointer list-none text-[15px] font-medium text-[#2C2C2A] hover:text-[#BA7517] transition-colors">
                     {item.name}
