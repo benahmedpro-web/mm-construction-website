@@ -33,7 +33,7 @@ const villesParDept: Record<string, string[]> = {
     "Saint-Julien-en-Genevois", "Saint-Martin-Bellevue", "Saint-Paul-en-Chablais", "Saint-Pierre-en-Faucigny", "Sallanches",
     "Samoëns", "Scientrier", "Scionzier", "Seynod", "Sillingy",
     "Talloires", "Taninges", "Thonon-les-Bains", "Vétraz-Monthoux", "Vers",
-    "Veyrier-du-Lac", "Ville-la-Grand", "Viuz-en-Sallaz", "Vulbens",
+    "Veyrier-du-Lac", "Ville-la-Grand", "Viry", "Viuz-en-Sallaz", "Vulbens",
   ],
   "Ain (01)": [
     "Ambérieu-en-Bugey", "Bellegarde-sur-Valserine", "Belley", "Bourg-en-Bresse",
