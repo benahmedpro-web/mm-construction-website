@@ -367,7 +367,7 @@ export default function TemoignagesPage() {
               href="/demande-etude/"
               className="inline-block bg-[#BA7517] text-white text-[16px] font-bold px-7 py-3.5 no-underline hover:bg-[#9E6312] transition-colors"
             >
-              Demande d&apos;étude gratuite →
+              Configurer mon projet →
             </Link>
             <a
               href="tel:+33625590926"

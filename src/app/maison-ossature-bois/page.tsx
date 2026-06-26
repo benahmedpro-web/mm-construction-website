@@ -53,7 +53,7 @@ export default function MaisonOssatureBoisPage() {
           </p>
           <div className="flex flex-wrap gap-3 mt-8">
             <Link href="/demande-etude/" className="inline-block bg-[#BA7517] text-white text-[16px] font-bold px-6 py-3 no-underline hover:bg-[#9E6312] transition-colors">
-              Demande d&apos;étude gratuite
+              Configurer mon projet
             </Link>
             <Link href="/notre-methode/" className="inline-block border-2 border-white text-white text-[16px] font-bold px-6 py-3 no-underline hover:bg-white hover:text-[#2C2C2A] transition-colors">
               Notre méthode MOE
@@ -150,7 +150,7 @@ export default function MaisonOssatureBoisPage() {
             Premier échange gratuit, sans engagement. Mahmoud analyse votre terrain, votre programme et votre budget, et vous dit si votre projet est faisable — avant toute contractualisation.
           </p>
           <Link href="/demande-etude/" className="inline-block bg-[#BA7517] text-white text-[17px] font-bold px-8 py-4 no-underline hover:bg-[#9E6312] transition-colors">
-            Demande d&apos;étude gratuite →
+            Configurer mon projet →
           </Link>
         </div>
       </section>

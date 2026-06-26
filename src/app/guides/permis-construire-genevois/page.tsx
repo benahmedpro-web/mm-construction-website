@@ -162,7 +162,7 @@ export default function GuidePermisGenevoisPage() {
             <p className="text-[15px] text-[#888780] leading-[1.7]">M&M CONSTRUCTION gère les permis de construire dans toute la zone depuis des années. On vérifie la faisabilité avant que vous engagiez le moindre euro.</p>
           </div>
           <Link href="/demande-etude/" className="flex-shrink-0 inline-block bg-[#BA7517] text-white text-[15px] font-bold px-6 py-3 no-underline hover:bg-[#9E6312] transition-colors self-center">
-            Demande d&apos;étude →
+            Configurer mon projet →
           </Link>
         </div>
       </section>

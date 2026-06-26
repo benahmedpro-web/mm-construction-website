@@ -343,7 +343,7 @@ export default function AnnoncesPage() {
             M&amp;M CONSTRUCTION peut analyser la faisabilité de votre projet et coordonner l&apos;ensemble du chantier. Premier échange gratuit.
           </p>
           <Link href="/demande-etude/" className="inline-block bg-[#BA7517] text-white text-[16px] font-bold px-7 py-3.5 no-underline hover:bg-[#9E6312] transition-colors">
-            Demande d&apos;étude gratuite →
+            Configurer mon projet →
           </Link>
         </div>
       </section>

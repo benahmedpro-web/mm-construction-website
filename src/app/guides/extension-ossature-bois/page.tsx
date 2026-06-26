@@ -164,7 +164,7 @@ export default function GuideExtensionPage() {
             <p className="text-[15px] text-[#888780] leading-[1.7]">Mahmoud analyse la faisabilité PLU et vous donne un budget estimatif. Gratuit, sans engagement.</p>
           </div>
           <Link href="/demande-etude/" className="flex-shrink-0 inline-block bg-[#BA7517] text-white text-[15px] font-bold px-6 py-3 no-underline hover:bg-[#9E6312] transition-colors self-center">
-            Demande d&apos;étude →
+            Configurer mon projet →
           </Link>
         </div>
       </section>

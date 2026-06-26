@@ -44,7 +44,7 @@ export default function RenovationBoisPage() {
           </p>
           <div className="flex flex-wrap gap-3 mt-8">
             <Link href="/demande-etude/" className="inline-block bg-[#BA7517] text-white text-[16px] font-bold px-6 py-3 no-underline hover:bg-[#9E6312] transition-colors">
-              Demande d&apos;étude gratuite
+              Configurer mon projet
             </Link>
           </div>
         </div>
@@ -124,7 +124,7 @@ export default function RenovationBoisPage() {
             Décrivez votre projet, on vous rappelle pour un premier échange gratuit. Analyse de faisabilité, budget estimatif, délais — avant toute contractualisation.
           </p>
           <Link href="/demande-etude/" className="inline-block bg-[#BA7517] text-white text-[17px] font-bold px-8 py-4 no-underline hover:bg-[#9E6312] transition-colors">
-            Demande d&apos;étude gratuite →
+            Configurer mon projet →
           </Link>
         </div>
       </section>

@@ -92,7 +92,7 @@ export function Footer() {
           </ul>
           {/* CTA footer */}
           <Link href="/demande-etude/" className="inline-block bg-[#BA7517] text-white text-[13px] font-bold px-4 py-2 no-underline hover:bg-[#9E6312] transition-colors">
-            Demande d&apos;étude →
+            Configurer mon projet →
           </Link>
         </div>
       </div>

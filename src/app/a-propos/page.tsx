@@ -306,7 +306,7 @@ export default function AProposPage() {
             Premier échange gratuit avec Mahmoud — analyse de faisabilité, budget estimatif, zone d&apos;intervention. Réponse sous 48h.
           </p>
           <Link href="/demande-etude/" className="inline-block bg-[#BA7517] text-white text-[17px] font-bold px-8 py-4 no-underline hover:bg-[#9E6312] transition-colors">
-            Demande d&apos;étude gratuite →
+            Configurer mon projet →
           </Link>
         </div>
       </section>
