@@ -5,12 +5,25 @@ async function createTrelloCard(name: string, desc: string) {
   const key = process.env.TRELLO_API_KEY;
   const token = process.env.TRELLO_TOKEN;
   const listId = process.env.TRELLO_LIST_NOUVEAUX;
-  if (!key || !token || !listId) return;
-  await fetch(`https://api.trello.com/1/cards?key=${key}&token=${token}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ idList: listId, name, desc }),
-  });
+  if (!key || !token || !listId) {
+    console.error("[Trello] Env vars manquantes", { key: !!key, token: !!token, listId: !!listId });
+    return;
+  }
+  try {
+    const res = await fetch(`https://api.trello.com/1/cards?key=${key}&token=${token}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ idList: listId, name, desc }),
+    });
+    if (!res.ok) {
+      const text = await res.text();
+      console.error("[Trello] Erreur API:", res.status, text);
+    } else {
+      console.log("[Trello] Carte créée:", name);
+    }
+  } catch (e) {
+    console.error("[Trello] Fetch échoué:", e);
+  }
 }
 
 export async function POST(req: NextRequest) {
@@ -36,7 +49,7 @@ export async function POST(req: NextRequest) {
       `📋 Statut recherché : ${statutLabel}`,
     ].filter(Boolean).join("\n");
 
-    await Promise.all([
+    await Promise.allSettled([
       createTrelloCard(cardName, cardDesc),
       resend.emails.send({
       from: "M&M CONSTRUCTION <onboarding@resend.dev>",
