@@ -65,8 +65,11 @@ export default function ExtensionBoisPage() {
             <p className="text-[16px] text-[#888780] leading-[1.8] mb-4">
               L&apos;ossature bois est idéale pour les extensions : chantier rapide (semaines, pas mois), poids léger sur les fondations existantes, isolation thermique performante dès le départ, et esthétique contemporaine qui s&apos;intègre sur tous les styles de maisons.
             </p>
+            <p className="text-[16px] text-[#888780] leading-[1.8] mb-4">
+              En Haute-Savoie et Ain, les PLU autorisent souvent le bardage bois, ce qui permet une intégration naturelle dans le paysage alpin. La réglementation RE2020 — en vigueur depuis janvier 2022 — favorise les matériaux biosourcés comme le bois : bilan carbone faible, performance thermique élevée, compatibilité native avec les systèmes de chauffage basse consommation (PAC, plancher chauffant).
+            </p>
             <p className="text-[16px] text-[#888780] leading-[1.8]">
-              En Haute-Savoie et Ain, les PLU autorisent souvent le bardage bois, ce qui permet une intégration naturelle dans le paysage alpin.
+              En zone sismique 3 (Genevois français, Annecy, Annemasse), la légèreté structurelle de l&apos;ossature bois réduit les contraintes sur les fondations existantes — un avantage décisif par rapport à une extension maçonnée, qui nécessite souvent des travaux de reprise en sous-œuvre.
             </p>
           </div>
           <div className="grid grid-cols-1 gap-4">

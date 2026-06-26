@@ -49,10 +49,17 @@ export default function MaisonOssatureBoisPage() {
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }} />
       {/* Hero */}
-      <div
-        className="relative bg-[#2C2C2A] py-20 px-5 overflow-hidden"
-        style={{ backgroundImage: "url(/images/hero-maison-bois-montagne-1.jpg)", backgroundSize: "cover", backgroundPosition: "center" }}
-      >
+      <div className="relative bg-[#2C2C2A] py-20 px-5 overflow-hidden">
+        <Image
+          src="/images/hero-maison-bois-montagne-1.jpg"
+          alt=""
+          fill
+          className="object-cover object-center"
+          priority
+          loading="eager"
+          aria-hidden="true"
+          sizes="100vw"
+        />
         <div className="absolute inset-0 bg-[#2C2C2A]/70" />
         <div className="relative z-10 max-w-[800px] mx-auto">
           <Link href="/" className="text-white/50 text-[13px] no-underline hover:text-white transition-colors">← Accueil</Link>
