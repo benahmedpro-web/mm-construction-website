@@ -142,7 +142,10 @@ export default function RootLayout({
   return (
     <html lang="fr" className="h-full antialiased">
       <head>
-        {/* Font preloads — critical weights */}
+        {/* Font preloads — placed here explicitly so they appear before Next.js scripts in <head>.
+            Next.js also auto-generates identical preloads from @font-face in globals.css, but
+            those appear after several <script> tags. Keeping both is harmless (browsers
+            deduplicate by URL) and ensures earliest possible font discovery. */}
         <link rel="preload" href="/fonts/BrandonGrotesque-Black.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/BrandonGrotesque-Bold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <script
