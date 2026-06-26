@@ -12,6 +12,7 @@ type Answers = {
   terrainStatus: string;
   surface: string;
   budget: string;
+  bienAVendre: string;
   delai: string;
   prenom: string;
   nom: string;
@@ -20,8 +21,8 @@ type Answers = {
   message: string;
 };
 
-const STEPS_WITH_TERRAIN = 7;
-const STEPS_WITHOUT_TERRAIN = 6;
+const STEPS_WITH_TERRAIN = 8;
+const STEPS_WITHOUT_TERRAIN = 7;
 
 function needsTerrainStep(typeProjet: string) {
   return typeProjet === "Maison neuve ossature bois" || typeProjet === "";
@@ -124,6 +125,24 @@ const BUDGETS = [
   "À définir / Je ne sais pas encore",
 ];
 
+const BIEN_OPTIONS = [
+  {
+    id: "Non",
+    label: "Non",
+    sublabel: "Je finance sans vendre de bien",
+  },
+  {
+    id: "Oui, c'est déjà en cours",
+    label: "Oui, déjà en cours",
+    sublabel: "Mon bien est mis en vente ou vendu",
+  },
+  {
+    id: "Oui, prochainement",
+    label: "Oui, prochainement",
+    sublabel: "Je prévois de vendre pour financer",
+  },
+];
+
 const DELAI_OPTIONS = [
   {
     id: "Moins de 6 mois",
@@ -158,6 +177,7 @@ function buildMessage(a: Answers): string {
     a.terrainStatus ? `Situation terrain : ${a.terrainStatus}` : "",
     `Surface souhaitée : ${a.surface}`,
     `Budget global : ${a.budget}`,
+    a.bienAVendre ? `Bien à vendre : ${a.bienAVendre}` : "",
     `Délai envisagé : ${a.delai}`,
     a.message ? `\nPrécisions complémentaires :\n${a.message}` : "",
   ].filter(Boolean).join("\n");
@@ -269,8 +289,8 @@ export default function DemandeEtudePage() {
   const [rgpd, setRgpd] = useState(false);
   const [answers, setAnswers] = useState<Answers>({
     typeProjet: "", zone: "", terrainStatus: "", surface: "",
-    budget: "", delai: "", prenom: "", nom: "", email: "",
-    telephone: "", message: "",
+    budget: "", bienAVendre: "", delai: "", prenom: "", nom: "",
+    email: "", telephone: "", message: "",
   });
 
   const totalSteps = needsTerrainStep(answers.typeProjet) ? STEPS_WITH_TERRAIN : STEPS_WITHOUT_TERRAIN;
@@ -344,8 +364,9 @@ export default function DemandeEtudePage() {
       sub: isTravaux ? "Surface concernée par les travaux" : "Surface habitable visée pour le projet",
     },
     5: { title: "Budget global estimé", sub: "Travaux, honoraires MOE et taxes compris" },
-    6: { title: "Délai du projet", sub: "Quand souhaitez-vous démarrer ?" },
-    7: { title: "Vos coordonnées", sub: "Mahmoud vous recontacte sous 48h" },
+    6: { title: "Avez-vous un bien à vendre ?", sub: "Pour financer tout ou partie du projet" },
+    7: { title: "Délai du projet", sub: "Quand souhaitez-vous démarrer ?" },
+    8: { title: "Vos coordonnées", sub: "Mahmoud vous recontacte sous 48h" },
   };
 
   return (
@@ -480,8 +501,23 @@ export default function DemandeEtudePage() {
             </div>
           )}
 
-          {/* Step 6 — Délai */}
+          {/* Step 6 — Bien à vendre */}
           {step === 6 && (
+            <div className="flex flex-col gap-3">
+              {BIEN_OPTIONS.map((opt) => (
+                <OptionCard
+                  key={opt.id}
+                  selected={answers.bienAVendre === opt.id}
+                  onClick={() => pick("bienAVendre", opt.id)}
+                  label={opt.label}
+                  sublabel={opt.sublabel}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Step 7 — Délai */}
+          {step === 7 && (
             <div className="flex flex-col gap-3">
               {DELAI_OPTIONS.map((opt) => (
                 <OptionCard
@@ -495,8 +531,8 @@ export default function DemandeEtudePage() {
             </div>
           )}
 
-          {/* Step 7 — Contact */}
-          {step === 7 && (
+          {/* Step 8 — Contact */}
+          {step === 8 && (
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
 
               {/* Récapitulatif */}
@@ -509,6 +545,7 @@ export default function DemandeEtudePage() {
                     ["Terrain", answers.terrainStatus],
                     ["Surface", answers.surface],
                     ["Budget", answers.budget],
+                    ["Bien à vendre", answers.bienAVendre],
                     ["Délai", answers.delai],
                   ].map(([label, value]) =>
                     value ? (
