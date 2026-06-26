@@ -73,8 +73,11 @@ export default function RenovationBoisPage() {
               <p className="text-[16px] text-[#888780] leading-[1.8] mb-4">
                 La rénovation d&apos;une maison bois ou l&apos;isolation par bardage bois ne s&apos;improvise pas. Les jonctions entre ancien et neuf, les risques de pont thermique, l&apos;étanchéité à l&apos;air et la gestion de la vapeur d&apos;eau demandent des artisans qui connaissent le bois — pas des généralistes.
               </p>
-              <p className="text-[16px] text-[#888780] leading-[1.8]">
+              <p className="text-[16px] text-[#888780] leading-[1.8] mb-4">
                 En Haute-Savoie et Ain, les conditions climatiques (enneigement, gel, humidité) renforcent ces exigences. M&M CONSTRUCTION sélectionne uniquement des artisans avec références bois locales, qualifications Qualibat et décennale à jour — avant tout démarrage de chantier. Chaque rénovation thermique cible un gain d&apos;au moins deux classes énergétiques au DPE, conformément aux exigences RE2020.
+              </p>
+              <p className="text-[16px] text-[#888780] leading-[1.8]">
+                Pour une ITE sur ossature bois existante, le DTU 31.2 impose un traitement fongicide et insecticide de la structure avant toute mise en œuvre de l&apos;isolant — une étape non négociable que beaucoup d&apos;entreprises généralisent ou omettent. L&apos;épaisseur d&apos;isolant (120 à 200 mm de laine de bois ou fibre de bois) est dimensionnée pour atteindre R ≥ 6 m².K/W. Le coût d&apos;une rénovation énergétique complète — ITE, menuiseries, étanchéité à l&apos;air — se situe entre 300 et 600 €/m² habitable selon l&apos;état de l&apos;ossature. Le chantier d&apos;isolation seul prend 3 à 6 semaines pour une maison de 100 à 150 m².
               </p>
             </div>
             <div className="bg-[#F2EDE6] p-6 flex flex-col gap-3">
